@@ -20,8 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     # ADMIN EINBINDEN:
     path('admin/', admin.site.urls, name="admin"),
-    # MANAGEMENT_APP EINBENDEN ÜBER DREI URLS ABRUFBAR:
-    path('management_app/', include('management_app.urls'), name="management_app"),
-    path('', include('management_app.urls')),
-    path('index/', include('management_app.urls')),
+    # BASE APP EINBINDEN:
+    path('', include('base.urls'), name="base"),    
+    
 ]
