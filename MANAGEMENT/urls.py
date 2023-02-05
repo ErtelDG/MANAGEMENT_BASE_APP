@@ -21,6 +21,5 @@ urlpatterns = [
     # ADMIN EINBINDEN:
     path('admin/', admin.site.urls, name="admin"),
     # BASE APP EINBINDEN:
-    path('', include('base.urls'), name="base"),    
-    
+    path('management', include('base.urls'), name="base"),
 ]
