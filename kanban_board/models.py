@@ -35,8 +35,8 @@ class Task(models.Model):
     member_type = models.CharField(max_length=1, choices=MEMBER_TYPE_CHOICES, default=1)
     assigned = models.ForeignKey(User, on_delete=models.PROTECT)
     status=models.CharField(max_length=1, choices=STATUS_CHOICES, default=1)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField('date created')
+    updated_at = models.DateTimeField('date updated')
     
     #It’s important to add __str__() methods to your models, not only for your own convenience when dealing with the interactive prompt, but also because objects’ representations are used throughout Django’s automatically-generated admin.
     #def __str__(self):
