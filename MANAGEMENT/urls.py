@@ -15,12 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic.base import TemplateView
 
 # HIER APPS EINBINDEN, ERKLÄRUNG ARGUMENTE: https://docs.djangoproject.com/en/4.1/intro/tutorial01/ :
 urlpatterns = [
-    # ADMIN EINBINDEN:
+    #HOME START Verzeichnis EINBINDEN:
+    path('', TemplateView.as_view(template_name='home/home.html'), name='home'),
+    path('home/', TemplateView.as_view(template_name='home/home.html'), name='home'),
+    # ADMIN Verzeichnis EINBINDEN:
     path('admin/', admin.site.urls, name="admin"),
-    # BASE APP EINBINDEN:
-    path('management', include('apps.base.urls'), name="management_base"),
-    path('', include('apps.base.urls'), name="management_/"),
+    # ACCOUNTS Verzeichnis EINBINDEN:
+    path('accounts/', include("django.contrib.auth.urls")),
+    # MANAGEMENT Verzeichnis APP EINBINDEN:
+    path('management/', TemplateView.as_view(template_name='home/home.html'), name='home'),
+    # KANBAN_BOARD Verzeichnis EINBINDEN:
+    path('management/kanban_board/', include('apps.kanban_board.urls'), name='kanban_board_side'),
 ]
