@@ -1,6 +1,8 @@
-from django.http import HttpResponse
-from django.urls import path, include
+from django.shortcuts import render
+
+def index_accounts(request):
+    return render(request, 'templates/base/accounts_template.html')
 
 def index_base(request):
-    return HttpResponse("BASETEMPLATE")
+    return render(request, 'templates/base/base_template.html')
   
