@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 def index_kanban_board(request):
-    return HttpResponse("KANBAN_BOARD_TEMPLATE")
+    return render(request, 'templates/kanban_board/kanban_board_template.html')
