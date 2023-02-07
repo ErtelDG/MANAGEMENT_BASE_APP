@@ -22,3 +22,9 @@
    background: url("../../img/home_img/access_denied.jpg") center / cover #46b6ac;
 
  }
+
+ .is-log-in-card-square>.mdl-card__title {
+   color: #fff;
+   background: url("../../img/home_img/is_logged_in.jpg") center / cover #46b6ac;
+
+ }

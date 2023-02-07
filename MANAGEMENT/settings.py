@@ -43,7 +43,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.kanban_board',
+    'tailwind',
+    'tailwind_css',
+    'django_browser_reload',
   ]
+
+TAILWIND_APP_NAME = 'tailwind_css'
+
+INTERNAL_IPS = ["127.0.0.1",]
+
+NPM_BIN_PATH = r"C:\Users\denni\AppData\Roaming\npm\npm.cmd"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 
@@ -122,9 +132,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
+STATIC_URL = '/static/'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )

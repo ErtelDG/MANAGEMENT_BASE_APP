@@ -30,4 +30,6 @@ urlpatterns = [
     path('management/', TemplateView.as_view(template_name='home/home.html'), name='home'),
     # KANBAN_BOARD Verzeichnis EINBINDEN:
     path('management/kanban_board/', include('apps.kanban_board.urls'), name='kanban_board_side'),
+    #Include django_browser_reload URL in your root url.py, which takes care of automatic page and css refreshes in the development mode.:
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
