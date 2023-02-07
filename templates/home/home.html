@@ -1,7 +1,32 @@
-{% extends "base/base_template.html" %} {% block content %}
+{% extends "base/base_template.html" %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/home_css/home.css' %}" />
+<div class="contain_home">
+   {% if user.is_authenticated %} Hi {{ user.username }}!
 
-<h1>TEMPLATE HOME</h1>
-{% if user.is_authenticated %} Hi {{ user.username }}! {% else %}
-<p>You are not logged in</p>
-<a href="{% url 'login' %}">Log In</a>
-{% endif %} {% endblock %}
+   <div class="mdl-grid max-width">
+      <div class="max-width">
+         <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+               <h2 class="mdl-card__title-text">Welcome</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+               <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> Get Started </a>
+            </div>
+            <div class="mdl-card__menu">
+               <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                  <i class="material-icons">share</i>
+               </button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   {% else %}
+   <p>You are not logged in</p>
+   <a href="{% url 'login' %}">Log In</a>
+   {% endif %}
+</div>
+{% endblock %}
