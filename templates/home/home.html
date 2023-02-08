@@ -5,20 +5,13 @@
    {% if user.is_authenticated %}
 
    <div class="mdl-grid max-width">
-      <div class="is-log-in-card-square mdl-card mdl-shadow--2dp">
-         <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text h-24">Welcome {{ user.username }}!</h2>
-         </div>
-         <div class="mdl-card__supporting-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...
-         </div>
-         <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"> Get Started </a>
-         </div>
-         <div class="mdl-card__menu">
-            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-               <i class="material-icons">share</i>
-            </button>
+      <div class="is-log-in-card-square mdl-card mdl-shadow--2dp flex flex-col items-center">
+         <div class="mdl-card__title h-24 w-full"></div>
+
+         <div class="mdl-card__actions mdl-card--border flex justify-center h-full items-center">
+            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{% url 'index_kanban_board' %}"
+               ><i class="material-icons mdl-list__item-icon mr-4">dashboard</i>KANBAN Board</a
+            >
          </div>
       </div>
    </div>

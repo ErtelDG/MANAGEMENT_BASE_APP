@@ -7,11 +7,8 @@
       <div class="mdl-card__supporting-text center-elements">
          <form method="post" class="flex flex-col">
             {% csrf_token %} {{ form.as_p }}
-            <div class="mdl-card__actions mdl-card--border flex center">
-               <button type="submit"
-                  class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored btn-style-login">
-                  Log In
-               </button>
+            <div class="mdl-card__actions flex center">
+               <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Log In</button>
             </div>
          </form>
       </div>
