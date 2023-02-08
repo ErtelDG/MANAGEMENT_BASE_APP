@@ -7,6 +7,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="#" type="image/x-icon" />
       <link rel="stylesheet" href="{% static 'css/base_css/base.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/registered/registered.css' %}" />
       <link rel="stylesheet" href="{% static 'css/base_css/material.min.css' %}" />
       <script src="{% static 'js/material_js/material.min.js' %}"></script>
 
@@ -36,7 +37,7 @@
                <a class="mdl-navigation__link" href="{% url 'logout' %}">Logout</a>
             </nav>
          </div>
-         <main class="mdl-layout__content">{% block content %}{% endblock %}</main>
+         <main class="mdl-layout__content p-2">{% block content %}{% endblock %}</main>
          <footer>
             <ul class="mdl-mini-footer__link-list center-elements">
                <li><a href="#">MANAGEMENT</a></li>

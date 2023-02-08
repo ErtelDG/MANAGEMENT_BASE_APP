@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'tailwind',
     'tailwind_css',
     'django_browser_reload',
-  ]
+    'apps.accounts',
+]
 
 TAILWIND_APP_NAME = 'tailwind_css'
 

@@ -6,6 +6,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 2rem;
 }
 
 .contain_center_content {

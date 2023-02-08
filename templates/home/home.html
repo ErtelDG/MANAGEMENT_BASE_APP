@@ -6,8 +6,8 @@
 
    <div class="mdl-grid max-width">
       <div class="is-log-in-card-square mdl-card mdl-shadow--2dp flex flex-col items-center">
-         <div class="mdl-card__title h-24 w-full"></div>
-
+         <div class="mdl-card__title h-24 w-full text-black"></div>
+         <h4><b>Welcome {{ user.username }}!</b></h4>
          <div class="mdl-card__actions mdl-card--border flex justify-center h-full items-center">
             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="{% url 'index_kanban_board' %}"
                ><i class="material-icons mdl-list__item-icon mr-4">dashboard</i>KANBAN Board</a
@@ -22,9 +22,8 @@
       <div class="mdl-card__title mdl-card--expand"></div>
       <div class="mdl-card__supporting-text center-elements">Access denied!</div>
       <div class="mdl-card__actions mdl-card--border flex justify-evenly">
-         
          <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="{% url 'login' %}"> Log In </a>
-         <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="{% url 'login' %}"> Sign Up </a>
+         <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="{% url 'signup_user' %}"> Sign Up </a>
       </div>
    </div>
 

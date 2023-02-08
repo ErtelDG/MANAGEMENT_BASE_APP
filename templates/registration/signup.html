@@ -1,0 +1,44 @@
+{% extends "base/base_template.html" %} {% block content %}
+<div class="flex justify-center sm:mt-4">
+   <div class="mdl-card mdl-shadow--2dp">
+      <form action="{% url 'registered' %}" method="post">
+         {% csrf_token %}
+         <input type="hidden" name="redirect" value="{{ redirect }}" />
+
+         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" placeholder="Username" type="text" name="username" minlength="5" maxlength="20" required />
+            <label class="mdl-textfield__label">Username</label>
+            <span class="mdl-textfield__error">Required. 5-20 characters or fewer. Letters only.</span>
+         </div>
+
+         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" placeholder="Firt name" type="text" name="firstname" minlength="2" maxlength="20" required />
+            <label class="mdl-textfield__label">First Name</label>
+            <span class="mdl-textfield__error">Required. 2-20 characters or fewer. Letters only.</span>
+         </div>
+
+         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" placeholder="Last name" type="text" name="lastname" minlength="2" maxlength="20" required />
+            <label class="mdl-textfield__label">Last Name</label>
+            <span class="mdl-textfield__error">Required. 2-20 characters or fewer. Letters only.</span>
+         </div>
+
+         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" placeholder="E-mail" type="email" name="useremail" required />
+            <label class="mdl-textfield__label">E-mail</label>
+            <span class="mdl-textfield__error">Enter a valid email!</span>
+         </div>
+
+         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="password" placeholder="Password" name="userpassword" minlength="8" required />
+            <label class="mdl-textfield__label">Password</label>
+            <span class="mdl-textfield__error">Your password must contain at least 8 characters.</span>
+         </div>
+         <div class="mdl-card__actions flex center">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Log In</button>
+         </div>
+      </form>
+   </div>
+</div>
+
+{% endblock %}

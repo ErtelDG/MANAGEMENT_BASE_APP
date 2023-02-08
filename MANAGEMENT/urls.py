@@ -25,8 +25,8 @@ urlpatterns = [
     # ADMIN Verzeichnis EINBINDEN:
     path('admin/', admin.site.urls, name="admin"),
     # ACCOUNTS Verzeichnis EINBINDEN:
-    path('accounts/', include("django.contrib.auth.urls")),
-    # MANAGEMENT Verzeichnis APP EINBINDEN:
+    path("accounts/", include("accounts.urls")),
+        # MANAGEMENT Verzeichnis APP EINBINDEN:
     path('management/', TemplateView.as_view(template_name='home/home.html'), name='home'),
     # KANBAN_BOARD Verzeichnis EINBINDEN:
     path('management/kanban_board/', include('apps.kanban_board.urls'), name='kanban_board_side'),

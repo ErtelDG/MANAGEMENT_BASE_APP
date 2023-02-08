@@ -1,0 +1,6 @@
+.bg-img-registered {
+  background: url('../../img/home_img/successful.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
