@@ -32,4 +32,6 @@ urlpatterns = [
     path('management/kanban_board/', include('apps.kanban_board.urls'), name='kanban_board_side'),
     #Include django_browser_reload URL in your root url.py, which takes care of automatic page and css refreshes in the development mode.:
     path("__reload__/", include("django_browser_reload.urls")),
+    #If you're intending to use the browsable API you'll probably also want to add REST framework's login and logout views. Add the following to your root urls.py file.
+    path('api-auth/', include('rest_framework.urls')),
 ]
