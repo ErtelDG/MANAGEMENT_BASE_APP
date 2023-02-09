@@ -42,12 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.kanban_board',
+    'kanban_board',
     'tailwind',
     'tailwind_css',
     'django_browser_reload',
-    'apps.accounts',
+    'accounts',
     'rest_framework',
+    'base',
 ]
 
 TAILWIND_APP_NAME = 'tailwind_css'

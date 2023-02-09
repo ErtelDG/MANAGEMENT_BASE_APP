@@ -1,1 +1,62 @@
-{% extends "base/base_template.html" %} {% block content %}KANBAN_BOARD_TEMPLATE{% endblock %}
+{% extends "base/base_template.html" %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/kanban_board_css/kanban_board.css' %}" />
+
+<div class="mdl-card__title mdl-card--expand border-b-4 mb-4">
+  <div class="mdl-card--border text-center w-full text-xl font-semibold">KANBAN Board</div>
+</div>
+
+
+<div class="flex justify-center">
+  <!-- Simulate a smartphone / tablet -->
+  <div class="w-full sm:max-w-lg h-5/6 text-white">
+
+    <div class="topnav">
+      <a href="javascript:void(0);" onclick="myFunction('add_Task')" class="active">Add new Task</a>
+      <div id="add_Task" style="display: none;">
+        <div>CONTENT ADD NEW TASK</div>
+      </div>
+    </div>
+
+    <div class="topnav">
+      <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active">To Do</a>
+      <div id="to_do" style="display: none;">
+        <div>CONTENT TODO</div>
+      </div>
+    </div>
+
+    <div class="topnav">
+      <a href="javascript:void(0);" onclick="myFunction('working')" class="active">Working</a>
+      <div id="working" style="display: none;">
+        <div>CONTENT WORKING</div>
+      </div>
+    </div>
+
+    <div class="topnav">
+      <a href="javascript:void(0);" onclick="myFunction('waiting')" class="active">Waiting</a>
+      <div id="waiting" style="display: none;">
+        <div>CONTENT WAITING</div>
+      </div>
+    </div>
+
+    <div class="topnav">
+      <a href="javascript:void(0);" onclick="myFunction('done')" class="active">Done</a>
+      <div id="done" style="display: none;">
+        <div>CONTENT DONE</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+  function myFunction(content) {
+    var x = document.getElementById(content);
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+</script>
+
+
+{% endblock %}

@@ -11,11 +11,6 @@ def index_accounts(request):
 def registered(request):
     
     if request.method == "POST":
-        print(request.POST.get("username")),
-        print(request.POST.get("firstname")),
-        print(request.POST.get("lastname")),
-        print(request.POST.get("useremail")),
-        print(request.POST.get("userpassword")),
        
         user = User.objects.create_user(
             username=request.POST.get("username"),
