@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: dennis@dennis.de
+Date: Thu, 09 Feb 2023 09:12:13 -0000
+Message-ID: <167593393305.17336.8538726750424569120@DESKTOP-DP9C5O8>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/NA/bjcn0d-9db2c81a5a88284302e79d061846e5d6/
+
+Your username, in case you’ve forgotten: Dennis
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------
