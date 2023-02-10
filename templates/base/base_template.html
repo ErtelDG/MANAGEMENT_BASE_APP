@@ -1,51 +1,53 @@
 {% load static %} {% load static tailwind_tags %} {% tailwind_css %}
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="shortcut icon" href="#" type="image/x-icon" />
-      <link rel="stylesheet" href="{% static 'css/base_css/base.css' %}" />
-      <link rel="stylesheet" href="{% static 'css/registered/registered.css' %}" />
-      <link rel="stylesheet" href="{% static 'css/base_css/material.min.css' %}" />
-      <script src="{% static 'js/material_js/material.min.js' %}"></script>
 
-      <title>MANAGEMENT</title>
-   </head>
+<head>
+   <meta charset="UTF-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="shortcut icon" href="#" type="image/x-icon" />
+   <link rel="stylesheet" href="{% static 'css/base_css/base.css' %}" />
+   <link rel="stylesheet" href="{% static 'css/registered/registered.css' %}" />
+   <link rel="stylesheet" href="{% static 'css/base_css/material.min.css' %}" />
+   <script src="{% static 'js/material_js/material.min.js' %}"></script>
 
-   <body>
-      <!-- Always shows a header, even in smaller screens. -->
-      <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-         <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-               <!-- Title -->
-               <a class="mdl-navigation__link mdl-layout-title" href="{% url 'home' %}">MANAGEMENT</a>
-               <!-- Add spacer, to align navigation to the right -->
-               <div class="mdl-layout-spacer"></div>
-               <!-- Navigation. We hide it in small screens. -->
-               <nav class="mdl-navigation mdl-layout--large-screen-only">
-                  <a class="mdl-navigation__link" href="{% url 'index_kanban_board' %}">Kanban_Board</a>
-                  <a class="mdl-navigation__link" href="{% url 'password_reset' %}">Reset Password</a>
-                  <a class="mdl-navigation__link" href="{% url 'logout' %}">Logout</a>
-               </nav>
-            </div>
-         </header>
-         <div class="mdl-layout__drawer">
+   <title>MANAGEMENT</title>
+</head>
+
+<body>
+   <!-- Always shows a header, even in smaller screens. -->
+   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+         <div class="mdl-layout__header-row">
+            <!-- Title -->
             <a class="mdl-navigation__link mdl-layout-title" href="{% url 'home' %}">MANAGEMENT</a>
-            <nav class="mdl-navigation">
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
                <a class="mdl-navigation__link" href="{% url 'index_kanban_board' %}">Kanban_Board</a>
                <a class="mdl-navigation__link" href="{% url 'password_reset' %}">Reset Password</a>
                <a class="mdl-navigation__link" href="{% url 'logout' %}">Logout</a>
             </nav>
          </div>
-         <main class="mdl-layout__content p-2">{% block content %}{% endblock %}</main>
-         <footer>
-            <ul class="mdl-mini-footer__link-list center-elements">
-               <li><a href="#">MANAGEMENT</a></li>
-               <li><a href="#">Privacy & Terms</a></li>
-            </ul>
-         </footer>
+      </header>
+      <div class="mdl-layout__drawer">
+         <a class="mdl-navigation__link mdl-layout-title" href="{% url 'home' %}">MANAGEMENT</a>
+         <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="{% url 'index_kanban_board' %}">Kanban_Board</a>
+            <a class="mdl-navigation__link" href="{% url 'password_reset' %}">Reset Password</a>
+            <a class="mdl-navigation__link" href="{% url 'logout' %}">Logout</a>
+         </nav>
       </div>
-   </body>
+      <main class="mdl-layout__content p-2 scoll-main">{% block content %}{% endblock %}</main>
+      <footer>
+         <ul class="mdl-mini-footer__link-list center-elements">
+            <li><a href="#">MANAGEMENT</a></li>
+            <li><a href="#">Privacy & Terms</a></li>
+         </ul>
+      </footer>
+   </div>
+</body>
+
 </html>

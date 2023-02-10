@@ -727,21 +727,12 @@ select {
   margin-bottom: 0.5rem;
 }
 
-.my-8 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
 .mr-4 {
   margin-right: 1rem;
 }
 
 .mb-4 {
   margin-bottom: 1rem;
-}
-
-.mr-2 {
-  margin-right: 0.5rem;
 }
 
 .mt-4 {
@@ -780,28 +771,12 @@ select {
   width: 100%;
 }
 
-.w-2\/5 {
-  width: 40%;
-}
-
 .w-2\/6 {
   width: 33.333333%;
 }
 
-.w-3\/5 {
-  width: 60%;
-}
-
-.w-24 {
-  width: 6rem;
-}
-
 .w-4\/6 {
   width: 66.666667%;
-}
-
-.w-36 {
-  width: 9rem;
 }
 
 .w-48 {
@@ -882,11 +857,6 @@ select {
   line-height: 1.75rem;
 }
 
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
 .font-semibold {
   font-weight: 600;
 }
@@ -918,19 +888,7 @@ select {
     margin-top: 1rem;
   }
 
-  .sm\:flex {
-    display: flex;
-  }
-
-  .sm\:w-2\/5 {
-    width: 40%;
-  }
-
   .sm\:max-w-lg {
     max-width: 32rem;
-  }
-
-  .sm\:justify-evenly {
-    justify-content: space-evenly;
   }
 }
