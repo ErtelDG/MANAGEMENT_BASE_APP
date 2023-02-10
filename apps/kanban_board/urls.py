@@ -6,4 +6,5 @@ from . import views
 # HIER PATH VON DER MANAGEMENT APP:
 urlpatterns = [
     path('', views.index_kanban_board, name='index_kanban_board'),
+    path('add-task', views.create_new_task, name='create_new_task'),
 ]

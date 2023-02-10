@@ -1,0 +1,20 @@
+{% extends "base/base_template.html" %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/kanban_board_css/kanban_board.css' %}" />
+
+<div class="mdl-card__title mdl-card--expand border-b-4 mb-4">
+   <div class="mdl-card--border text-center w-full text-xl font-semibold">TEST SIDE</div>
+</div>
+
+<div class="flex justify-center">
+   <div class="w-full sm:max-w-lg h-5/6">
+      <div class="topnav">
+         <a href="javascript:void(0);" onclick="myFunction('add_Task')" class="active">REQUEST</a>
+         <div id="add_Task" style="display: block">
+            {% for wert in DATABASE %}
+            <h4 class="text-center border-b-4 pb-4">TEST RESPONSE {{ wert.title }} {{ wert.id }} {{ wert.status }} {{ wert.assigned }}</h4>
+            {% endfor %}
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

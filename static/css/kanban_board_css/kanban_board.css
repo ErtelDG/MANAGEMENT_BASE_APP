@@ -1,3 +1,48 @@
+.info-add-task {
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  height: 0px;
+  background-color: lightgreen;
+  width: 60%;
+  animation-name: show-info-add-task;
+  animation-duration: 5s;
+}
+
+@keyframes show-info-add-task {
+  0% {
+    height: 0px;
+    visibility: unset;
+    font-size: 0rem
+  }
+
+  25% {
+    font-size: 1rem;
+  }
+
+  50% {
+    height: 60px;
+  }
+
+  65% {
+    font-size: 1rem;
+  }
+
+  90% {
+    font-size: 0rem;
+  }
+
+  100% {
+    height: 0px;
+    visibility: hidden;
+    font-size: 0rem;
+  }
+
+}
+
+
 .w-100 {
   width: 100% !important;
 }

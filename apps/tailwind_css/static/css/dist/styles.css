@@ -727,6 +727,11 @@ select {
   margin-bottom: 0.5rem;
 }
 
+.my-8 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .mr-4 {
   margin-right: 1rem;
 }
@@ -791,6 +796,18 @@ select {
   width: 6rem;
 }
 
+.w-4\/6 {
+  width: 66.666667%;
+}
+
+.w-36 {
+  width: 9rem;
+}
+
+.w-48 {
+  width: 12rem;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -847,6 +864,10 @@ select {
   text-align: center;
 }
 
+.align-middle {
+  vertical-align: middle;
+}
+
 .font-serif {
   font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
@@ -859,6 +880,11 @@ select {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .font-semibold {
@@ -892,7 +918,19 @@ select {
     margin-top: 1rem;
   }
 
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:w-2\/5 {
+    width: 40%;
+  }
+
   .sm\:max-w-lg {
     max-width: 32rem;
+  }
+
+  .sm\:justify-evenly {
+    justify-content: space-evenly;
   }
 }

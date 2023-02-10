@@ -10,65 +10,66 @@
       <div class="topnav">
          <a href="javascript:void(0);" onclick="myFunction('add_Task')" class="active">Add new Task</a>
          <div id="add_Task" style="display: block">
+            <div class="w-full flex justify-center align-middle">
+               {% if responseInfoAddTaskCreated %}
+               <div class="info-add-task">{{ responseInfoAddTaskCreated }}</div>
+               {% endif %}
+            </div>
             {% for wert in DATABASE %}
-            <h4 class="text-center border-b-4 pb-4">Create new Task {{ wert.title }} {{ wert.id }} {{ wert.status }} {{ wert.assigned }}</h4>
+            <h4 class="text-center border-b-4 pb-4">Create new Task {{ wert.title }} {{ wert.id }} {{ wert.status }} {{
+               wert.assigned }}</h4>
             {% endfor %}
-            <form action="#" method="post" class="w-full px-4">
-               <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" placeholder="Title..." minlength="5" maxlength="50" required />
-               <textarea
-                  class="w-full my-2"
-                  name="newTaskDescription"
-                  id="newTaskDescription"
-                  placeholder="Description..."
-                  minlength="10"
-                  maxlength="255"
-                  required
-                  cols="30"
-                  rows="5"
-               ></textarea>
-               <div class="flex justify-evenly w-full my-2">
-                  <div class="w-2/5 flex justify-evenly items-center">
-                     <label class="w-2/6 mr-2" for="prio">Select prio:</label>
-                     <select class="w-3/5" name="newTaskPrio" id="newTaskPrio" required>
-                        <option value="low">Low</option>
-                        <option value="med">Med</option>
-                        <option value="urg">Urg</option>
-                     </select>
-                  </div>
-                  <div class="w-2/5 flex justify-evenly items-center">
-                     <label class="w-2/6 mr-2" for="memberType">Prio:</label>
-                     <select class="w-3/5" name="newMemberType" id="newMemberType" required>
-                        <option value="frontend">Frontend</option>
-                        <option value="backend">Backend</option>
-                        <option value="uiUxDesign">UI/UX Design</option>
-                        <option value="productOwner">Product Owner</option>
-                        <option value="srumMaster">Srum Master</option>
-                        <option value="testing">Testing</option>
-                     </select>
-                  </div>
+            <form action="" method="post" class="w-full px-4">
+               {% csrf_token %} {{ form.as_p }}
+               <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" placeholder="Title..."
+                  minlength="5" maxlength="50" required />
+               <textarea class="w-full my-2" name="newTaskDescription" id="newTaskDescription"
+                  placeholder="Description..." minlength="10" maxlength="255" required cols="30" rows="5"></textarea>
+
+               <div class="flex justify-evenly items-center my-2">
+                  <label class="w-2/6" for="prio">Prio:</label>
+                  <select class="w-4/6" name="newTaskPrio" id="newTaskPrio" required>
+                     <option value="low">Low</option>
+                     <option value="med">Med</option>
+                     <option value="urg">Urg</option>
+                  </select>
                </div>
-               <div class="flex justify-evenly w-full my-2">
-                  <div class="w-2/5 flex justify-evenly items-center">
-                     <label class="w-2/6 mr-2" for="prio">Assigned:</label>
-                     <select class="w-3/5" name="newTaskPrio" id="newTaskPrio">
-                        <!--  for user in users %}
+
+               <div class="flex justify-evenly items-center my-2">
+                  <label class="w-2/6" for="memberType">Area:</label>
+                  <select class="w-4/6" name="newMemberType" id="newMemberType" required>
+                     <option value="frontend">Frontend</option>
+                     <option value="backend">Backend</option>
+                     <option value="uiUxDesign">UI/UX Design</option>
+                     <option value="productOwner">Product Owner</option>
+                     <option value="srumMaster">Srum Master</option>
+                     <option value="testing">Testing</option>
+                  </select>
+               </div>
+
+               <div class="flex justify-evenly items-center my-2">
+                  <label class="w-2/6" for="prio">Assigned:</label>
+                  <select class="w-4/6" name="newTaskPrio" id="newTaskPrio">
+                     <!--  for user in users %}
                   <option value=` user.username %}`>{{ user.username }}</li>
                      endfor %} -->
-                        <option value="">DJANGO CODE IMPLEMENTIEREN!!</option>
-                     </select>
-                  </div>
-                  <div class="w-2/5 flex justify-evenly items-center">
-                     <label class="w-2/6 mr-2" for="status">Status:</label>
-                     <select class="w-3/5" name="newTaskStatus" id="newTaskStatus" required>
-                        <option value="ToDo">ToDo</option>
-                        <option value="working">Working</option>
-                        <option value="waiting">Waiting</option>
-                        <option value="done">Done</option>
-                     </select>
-                  </div>
+                     <option value="">DJANGO CODE IMPLEMENTIEREN!!</option>
+                  </select>
                </div>
+
+               <div class="flex justify-evenly items-center my-2">
+                  <label class="w-2/6" for="status">Status:</label>
+                  <select class="w-4/6" name="newTaskStatus" id="newTaskStatus" required>
+                     <option value="ToDo">ToDo</option>
+                     <option value="working">Working</option>
+                     <option value="waiting">Waiting</option>
+                     <option value="done">Done</option>
+                  </select>
+               </div>
+
                <div class="flex justify-evenly w-full my-2">
-                  <button class="w-24 text-white px-4 py-2 bg-blue-800 hover:bg-opacity-50" type="submit">Add task</button>
+                  <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 hover:bg-opacity-50" type="submit">Add
+                     task</button>
                </div>
             </form>
          </div>
