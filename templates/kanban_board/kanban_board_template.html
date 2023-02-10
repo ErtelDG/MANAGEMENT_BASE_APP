@@ -2,110 +2,116 @@
 <link rel="stylesheet" href="{% static 'css/kanban_board_css/kanban_board.css' %}" />
 
 <div class="mdl-card__title mdl-card--expand border-b-4 mb-4">
-  <div class="mdl-card--border text-center w-full text-xl font-semibold">KANBAN Board</div>
+   <div class="mdl-card--border text-center w-full text-xl font-semibold">KANBAN Board</div>
 </div>
-
 
 <div class="flex justify-center">
-  <div class="w-full sm:max-w-lg h-5/6">
-    <div class="topnav">
-      <a href="javascript:void(0);" onclick="myFunction('add_Task')" class="active">Add new Task</a>
-      <div id="add_Task" style="display: block;">
-        <h4 class="text-center border-b-4 pb-4">Create new Task</h4>
-        <form action="#" method="post" class="w-full px-4">
-          <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" placeholder="Title..."
-            minlength="5" maxlength="50" required>
-          <textarea class="w-full my-2" name="newTaskDescription" id="newTaskDescription" placeholder="Description..."
-            minlength="10" maxlength="255" required cols="30" rows="5"></textarea>
-          <div class="flex justify-evenly w-full my-2">
-            <div class="w-2/5 flex justify-evenly items-center">
-              <label class="w-2/6 mr-2" for="prio">Select prio:</label>
-              <select class="w-3/5" name="newTaskPrio" id="newTaskPrio" required>
-                <option value="low">Low</option>
-                <option value="med">Med</option>
-                <option value="urg">Urg</option>
-              </select>
-            </div>
-            <div class="w-2/5 flex justify-evenly items-center">
-              <label class="w-2/6 mr-2" for="memberType">Prio:</label>
-              <select class="w-3/5" name="newMemberType" id="newMemberType" required>
-                <option value="frontend">Frontend</option>
-                <option value="backend">Backend</option>
-                <option value="uiUxDesign">UI/UX Design</option>
-                <option value="productOwner">Product Owner</option>
-                <option value="srumMaster">Srum Master</option>
-                <option value="testing">Testing</option>
-              </select>
-            </div>
-          </div>
-          <div class="flex justify-evenly w-full my-2">
-            <div class="w-2/5 flex justify-evenly items-center">
-              <label class="w-2/6 mr-2" for="prio">Assigned:</label>
-              <select class="w-3/5" name="newTaskPrio" id="newTaskPrio">
-                <!--  for user in users %}
+   <div class="w-full sm:max-w-lg h-5/6">
+      <div class="topnav">
+         <a href="javascript:void(0);" onclick="myFunction('add_Task')" class="active">Add new Task</a>
+         <div id="add_Task" style="display: block">
+            {% for wert in DATABASE %}
+            <h4 class="text-center border-b-4 pb-4">Create new Task {{ wert.title }} {{ wert.id }} {{ wert.status }} {{ wert.assigned }}</h4>
+            {% endfor %}
+            <form action="#" method="post" class="w-full px-4">
+               <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" placeholder="Title..." minlength="5" maxlength="50" required />
+               <textarea
+                  class="w-full my-2"
+                  name="newTaskDescription"
+                  id="newTaskDescription"
+                  placeholder="Description..."
+                  minlength="10"
+                  maxlength="255"
+                  required
+                  cols="30"
+                  rows="5"
+               ></textarea>
+               <div class="flex justify-evenly w-full my-2">
+                  <div class="w-2/5 flex justify-evenly items-center">
+                     <label class="w-2/6 mr-2" for="prio">Select prio:</label>
+                     <select class="w-3/5" name="newTaskPrio" id="newTaskPrio" required>
+                        <option value="low">Low</option>
+                        <option value="med">Med</option>
+                        <option value="urg">Urg</option>
+                     </select>
+                  </div>
+                  <div class="w-2/5 flex justify-evenly items-center">
+                     <label class="w-2/6 mr-2" for="memberType">Prio:</label>
+                     <select class="w-3/5" name="newMemberType" id="newMemberType" required>
+                        <option value="frontend">Frontend</option>
+                        <option value="backend">Backend</option>
+                        <option value="uiUxDesign">UI/UX Design</option>
+                        <option value="productOwner">Product Owner</option>
+                        <option value="srumMaster">Srum Master</option>
+                        <option value="testing">Testing</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="flex justify-evenly w-full my-2">
+                  <div class="w-2/5 flex justify-evenly items-center">
+                     <label class="w-2/6 mr-2" for="prio">Assigned:</label>
+                     <select class="w-3/5" name="newTaskPrio" id="newTaskPrio">
+                        <!--  for user in users %}
                   <option value=` user.username %}`>{{ user.username }}</li>
                      endfor %} -->
-                <option value="">DJANGO CODE IMPLEMENTIEREN!!</option>
-              </select>
-            </div>
-            <div class="w-2/5 flex justify-evenly items-center">
-              <label class="w-2/6 mr-2" for="status">Status:</label>
-              <select class="w-3/5" name="newTaskStatus" id="newTaskStatus" required>
-                <option value="ToDo">ToDo</option>
-                <option value="working">Working</option>
-                <option value="waiting">Waiting</option>
-                <option value="done">Done</option>
-              </select>
-            </div>
-          </div>
-          <div class="flex justify-evenly w-full my-2">
-            <button class="w-24 text-white px-4 py-2 bg-blue-800 hover:bg-opacity-50" type="submit">Add
-              task</button>
-          </div>
-        </form>
+                        <option value="">DJANGO CODE IMPLEMENTIEREN!!</option>
+                     </select>
+                  </div>
+                  <div class="w-2/5 flex justify-evenly items-center">
+                     <label class="w-2/6 mr-2" for="status">Status:</label>
+                     <select class="w-3/5" name="newTaskStatus" id="newTaskStatus" required>
+                        <option value="ToDo">ToDo</option>
+                        <option value="working">Working</option>
+                        <option value="waiting">Waiting</option>
+                        <option value="done">Done</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="flex justify-evenly w-full my-2">
+                  <button class="w-24 text-white px-4 py-2 bg-blue-800 hover:bg-opacity-50" type="submit">Add task</button>
+               </div>
+            </form>
+         </div>
       </div>
-    </div>
 
-    <div class="topnav">
-      <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active">To Do</a>
-      <div id="to_do" style="display: none;">
-        <div>CONTENT TODO</div>
+      <div class="topnav">
+         <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active">To Do</a>
+         <div id="to_do" style="display: none">
+            <div>CONTENT TODO</div>
+         </div>
       </div>
-    </div>
 
-    <div class="topnav">
-      <a href="javascript:void(0);" onclick="myFunction('working')" class="active">Working</a>
-      <div id="working" style="display: none;">
-        <div>CONTENT WORKING</div>
+      <div class="topnav">
+         <a href="javascript:void(0);" onclick="myFunction('working')" class="active">Working</a>
+         <div id="working" style="display: none">
+            <div>CONTENT WORKING</div>
+         </div>
       </div>
-    </div>
 
-    <div class="topnav">
-      <a href="javascript:void(0);" onclick="myFunction('waiting')" class="active">Waiting</a>
-      <div id="waiting" style="display: none;">
-        <div>CONTENT WAITING</div>
+      <div class="topnav">
+         <a href="javascript:void(0);" onclick="myFunction('waiting')" class="active">Waiting</a>
+         <div id="waiting" style="display: none">
+            <div>CONTENT WAITING</div>
+         </div>
       </div>
-    </div>
 
-    <div class="topnav">
-      <a href="javascript:void(0);" onclick="myFunction('done')" class="active">Done</a>
-      <div id="done" style="display: none;">
-        <div>CONTENT DONE</div>
+      <div class="topnav">
+         <a href="javascript:void(0);" onclick="myFunction('done')" class="active">Done</a>
+         <div id="done" style="display: none">
+            <div>CONTENT DONE</div>
+         </div>
       </div>
-    </div>
-
-  </div>
+   </div>
 </div>
 <script>
-  function myFunction(content) {
-    var x = document.getElementById(content);
-    if (x.style.display === "block") {
-      x.style.display = "none";
-    } else {
-      x.style.display = "block";
-    }
-  }
+   function myFunction(content) {
+      var x = document.getElementById(content);
+      if (x.style.display === "block") {
+         x.style.display = "none";
+      } else {
+         x.style.display = "block";
+      }
+   }
 </script>
-
 
 {% endblock %}

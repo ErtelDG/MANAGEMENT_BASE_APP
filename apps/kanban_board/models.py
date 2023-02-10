@@ -4,37 +4,37 @@ from django.utils import timezone
 import datetime
 
 PRIO_CHOICES=[
-  ('1','Low'),
-  ('2','Med'),
-  ('3','Urg'),
+  ('Low','Low'),
+  ('Medium','Medium'),
+  ('Urgent','Urgent'),
 ]
 
 
 MEMBER_TYPE_CHOICES=[
-  ('1','Frontend'),
-  ('2','Backend'),
-  ('3','UI/UX Design'),
-  ('4','Product Owner'),
-  ('5','Srum Master'),
-  ('6','Testing'),
+  ('Frontend','Frontend'),
+  ('Backend','Backend'),
+  ('UI/UX Design','UI/UX Design'),
+  ('Product Owner','Product Owner'),
+  ('Srum Master','Srum Master'),
+  ('Testing','Testing'),
 ]
 
 
 STATUS_CHOICES=[
-  ('1','ToDo'),
-  ('2','Working'),
-  ('3','Waiting'),
-  ('4','Done'),
+  ('ToDo','ToDo'),
+  ('Working','Working'),
+  ('Waiting','Waiting'),
+  ('Done','Done'),
 ]
 
 
 class Task(models.Model):
     title = models.CharField(max_length=200, default="No Title")
     description = models.CharField(max_length=400, default="No description")
-    prio = models.CharField(max_length=1, choices=PRIO_CHOICES, default=1)
-    member_type = models.CharField(max_length=1, choices=MEMBER_TYPE_CHOICES, default=1)
+    prio = models.CharField(max_length=20, choices=PRIO_CHOICES, default='Low')
+    member_type = models.CharField(max_length=20, choices=MEMBER_TYPE_CHOICES, default='Frontend')
     assigned = models.ForeignKey(User, on_delete=models.PROTECT)
-    status=models.CharField(max_length=1, choices=STATUS_CHOICES, default=1)
+    status=models.CharField(max_length=20, choices=STATUS_CHOICES, default='ToDo')
     created_at = models.DateTimeField('date created')
     updated_at = models.DateTimeField('date updated')
     
