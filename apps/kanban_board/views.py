@@ -10,13 +10,7 @@ def index_kanban_board(request):
     
     if request.method == 'POST':
         userList = User.objects.all()
-             
-        print(request.POST.get("newTaskTitle"))        
-        print(request.POST.get("newTaskDescription"))        
-        print(request.POST.get("newTaskPrio"))        
-        print(request.POST.get("newMemberType"))        
-        print(request.POST.get("newTaskAssigned"))        
-        print(request.POST.get("newTaskStatus"))
+      
         Task.objects.create(
             title = request.POST["newTaskTitle"],
             description=request.POST["newTaskDescription"],
@@ -32,8 +26,16 @@ def index_kanban_board(request):
         return render(request, 'kanban_board/kanban_board_template.html',{'WERT1':your_variable, 'responseInfoAddTaskCreated': 'New task successfully', 'users': userList})
     
     if request.method == 'GET':
+        toDo = Task.objects.filter(status="ToDo")
+        working = Task.objects.filter(status="Working")
+        waiting = Task.objects.filter(status="Waiting")
+        done = Task.objects.filter(status="Done")
+        print('PRINTING FOR SEE toDo',toDo)
+        print('PRINTING FOR SEE working',working)
+        print('PRINTING FOR SEE waiting',waiting)
+        print('PRINTING FOR SEE done',done)
         userList = User.objects.all()
-        return render(request, 'kanban_board/kanban_board_template.html', {'users': userList})
+        return render(request, 'kanban_board/kanban_board_template.html', {'users': userList, 'toDos':toDo, 'workings':working, 'waitings':waiting, 'dones':done})
     return render(request, 'kanban_board/kanban_board_template.html',{'WERT1':'NO VALUE REQUEST'})
 
 

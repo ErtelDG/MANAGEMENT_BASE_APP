@@ -9,7 +9,7 @@
    <div class="w-full sm:max-w-lg h-5/6">
       <div class="topnav">
          <a href="javascript:void(0);" onclick="myFunction('add_Task')" class="active">Add new Task</a>
-         <div id="add_Task" style="display: block">
+         <div id="add_Task" style="display: none">
             <div class="w-full flex justify-center align-middle">
                {% if responseInfoAddTaskCreated %}
                <div class="info-add-task">{{ responseInfoAddTaskCreated }}</div>
@@ -20,30 +20,38 @@
             {% endfor %} -->
             <form action="" method="post" class="w-full px-4">
                {% csrf_token %} {{ form.as_p }}
-               <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" placeholder="Title..."
-                  minlength="5" maxlength="50" required />
+               <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" placeholder="Title..." minlength="5" maxlength="50" required />
 
-               <textarea class="w-full my-2" name="newTaskDescription" id="newTaskDescription"
-                  placeholder="Description..." minlength="10" maxlength="255" required cols="30" rows="5"></textarea>
+               <textarea
+                  class="w-full my-2"
+                  name="newTaskDescription"
+                  id="newTaskDescription"
+                  placeholder="Description..."
+                  minlength="10"
+                  maxlength="255"
+                  required
+                  cols="30"
+                  rows="5"
+               ></textarea>
 
                <div class="flex justify-evenly items-center my-2">
                   <label class="w-2/6" for="prio">Prio:</label>
                   <select class="w-4/6" name="newTaskPrio" id="newTaskPrio">
-                     <option value="low">Low</option>
-                     <option value="med">Med</option>
-                     <option value="urg">Urg</option>
+                     <option value="LOW">Low</option>
+                     <option value="MEDIUM">Medium</option>
+                     <option value="URGENT">Urgent</option>
                   </select>
                </div>
 
                <div class="flex justify-evenly items-center my-2">
                   <label class="w-2/6" for="memberType">Area:</label>
                   <select class="w-4/6" name="newMemberType" id="newMemberType" required>
-                     <option value="frontend">Frontend</option>
-                     <option value="backend">Backend</option>
-                     <option value="uiUxDesign">UI/UX Design</option>
-                     <option value="productOwner">Product Owner</option>
-                     <option value="srumMaster">Srum Master</option>
-                     <option value="testing">Testing</option>
+                     <option value="Frontend">Frontend</option>
+                     <option value="Backend">Backend</option>
+                     <option value="Ui Ux Design">UI/UX Design</option>
+                     <option value="Product Owner">Product Owner</option>
+                     <option value="Srum Master">Srum Master</option>
+                     <option value="Testing">Testing</option>
                   </select>
                </div>
 
@@ -51,25 +59,23 @@
                   <label class="w-2/6" for="prio">Assigned:</label>
                   <select class="w-4/6" name="newTaskAssigned" id="newTaskAssigned">
                      {% for user in users %}
-                  <option value={{ user.id }}>{{ user.username }}</option>
+                     <option value={{ user.id }}>{{ user.username }}</option>
                      {% endfor %}
-               
                   </select>
                </div>
 
                <div class="flex justify-evenly items-center my-2">
                   <label class="w-2/6" for="status">Status:</label>
                   <select class="w-4/6" name="newTaskStatus" id="newTaskStatus" required>
-                     <option value="toDo">ToDo</option>
-                     <option value="working">Working</option>
-                     <option value="waiting">Waiting</option>
-                     <option value="done">Done</option>
+                     <option value="To Do">ToDo</option>
+                     <option value="Working">Working</option>
+                     <option value="Waiting">Waiting</option>
+                     <option value="Done">Done</option>
                   </select>
                </div>
 
                <div class="flex justify-evenly w-full my-2">
-                  <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 hover:bg-opacity-50" type="submit">Add
-                     task</button>
+                  <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 hover:bg-opacity-50" type="submit">Add task</button>
                </div>
             </form>
          </div>
@@ -79,6 +85,14 @@
          <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active">To Do</a>
          <div id="to_do" style="display: none">
             <div>CONTENT TODO</div>
+            {% for todo in toDos %}
+            <p>{{ todo.title }}</p>
+            <p>{{ todo.description }}</p>
+            <p>{{ todo.prio }}</p>
+            <p>{{ todo.member_type }}</p>
+            <p>{{ todo.assigned_id }}</p>
+            <p>{{ todo.status }}</p>
+            {% endfor%}
          </div>
       </div>
 
@@ -86,6 +100,14 @@
          <a href="javascript:void(0);" onclick="myFunction('working')" class="active">Working</a>
          <div id="working" style="display: none">
             <div>CONTENT WORKING</div>
+            {% for working in workings %}
+            <p>{{ working.title }}</p>
+            <p>{{ working.description }}</p>
+            <p>{{ working.prio }}</p>
+            <p>{{ working.member_type }}</p>
+            <p>{{ working.assigned_id }}</p>
+            <p>{{ working.status }}</p>
+            {% endfor%}
          </div>
       </div>
 
