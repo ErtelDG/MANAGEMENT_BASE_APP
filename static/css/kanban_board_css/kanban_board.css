@@ -1,3 +1,24 @@
+.disable-input-user {
+  background-color: #f0f7ff;
+  border-radius: 0.25rem;
+  resize: none;
+  -ms-overflow-style: none !important;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none !important;
+  /* Firefox */
+  padding: 4px;
+  border-color: transparent;
+}
+
+
+
+.disable-input-user::-webkit-scrollbar {
+  display: none !important;
+  /* Safari and Chrome */
+}
+
+
+
 .info-add-task {
   z-index: -1;
   display: flex;

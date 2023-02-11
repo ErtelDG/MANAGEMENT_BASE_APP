@@ -20,19 +20,11 @@
             {% endfor %} -->
             <form action="" method="post" class="w-full px-4">
                {% csrf_token %} {{ form.as_p }}
-               <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" placeholder="Title..." minlength="5" maxlength="50" required />
+               <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" placeholder="Title..."
+                  minlength="5" maxlength="50" required />
 
-               <textarea
-                  class="w-full my-2"
-                  name="newTaskDescription"
-                  id="newTaskDescription"
-                  placeholder="Description..."
-                  minlength="10"
-                  maxlength="255"
-                  required
-                  cols="30"
-                  rows="5"
-               ></textarea>
+               <textarea class="w-full my-2" name="newTaskDescription" id="newTaskDescription"
+                  placeholder="Description..." minlength="10" maxlength="255" required cols="30" rows="5"></textarea>
 
                <div class="flex justify-evenly items-center my-2">
                   <label class="w-2/6" for="prio">Prio:</label>
@@ -75,7 +67,8 @@
                </div>
 
                <div class="flex justify-evenly w-full my-2">
-                  <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 hover:bg-opacity-50" type="submit">Add task</button>
+                  <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 hover:bg-opacity-50" type="submit">Add
+                     task</button>
                </div>
             </form>
          </div>
@@ -83,8 +76,86 @@
 
       <div class="topnav">
          <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active">To Do</a>
-         <div id="to_do" style="display: none">
-            <div>CONTENT TODO</div>
+         <div id="to_do" style="display: block">
+            <div>CONTENT TEMPLATE</div>
+            <br>
+            <hr>
+            <br>
+
+            <div class="border-2 border-gray-300 bg-blue-100 w-72 rounded-md">
+               <form action="" method="post" class="w-full px-4">
+                  {% csrf_token %} {{ form.as_p }}
+                  {% comment %} <div class="hidden" id="TaskId_{{ todo.id }}" </div> {% endcomment %}
+                     <input class="w-full my-2 disable-input-user text-lg" type="text" name="newTaskTitle"
+                        id="newTaskTitle" placeholder="Title..." value="HIER DJANGO TITLE" minlength="5" maxlength="50"
+                        required disabled />
+                     <textarea class="w-full my-2 disable-input-user" name="newTaskDescription" id="newTaskDescription"
+                        placeholder="Description..." minlength="10" maxlength="255" required rows="5"
+                        disabled>"HIER DJANGO DESCRIPTION" "HIER DJANGO DESCRIPTION" "HIER DJANGO DESCRIPTION" "HIER DJANGO DESCRIPTION"</textarea>
+
+                     <div class="flex justify-evenly items-center my-2 disable-input-user">
+                        <label class="w-2/6 disable-input-user" for="prio">Prio:</label>
+                        <label class="w-3/6 disable-input-user" for="prio">DJANGO PRIO UND CLASS!!! and remove hidden by
+                           select</label>
+                        <select class="w-4/6 disable-input-user hidden" name="newTaskPrio" id="newTaskPrio" disabled>
+                           <option value="LOW">Low</option>
+                           <option value="MEDIUM">Medium</option>
+                           <option value="URGENT">Urgent</option>
+                        </select>
+                     </div>
+
+                     <div class="flex justify-evenly items-center my-2 disable-input-user">
+                        <label class="w-2/6" for="memberType">Area:</label>
+                        <label class="w-3/6" for="memberType">DJANGO AREA UND CLASS!!! and remove hidden by
+                           select</label>
+                        <select class="w-4/6 hidden disable-input-user" name="newMemberType" id="newMemberType"
+                           required>
+                           <option value="Frontend">Frontend</option>
+                           <option value="Backend">Backend</option>
+                           <option value="Ui Ux Design">UI/UX Design</option>
+                           <option value="Product Owner">Product Owner</option>
+                           <option value="Srum Master">Srum Master</option>
+                           <option value="Testing">Testing</option>
+                        </select>
+                     </div>
+
+                     <div class="flex justify-evenly items-center my-2 disable-input-user">
+                        <label class="w-2/6" for="prio">Assigned:</label>
+                        <label class="w-3/6" for="prio">DJANGO!!</label>
+                        <select class="w-4/6 hidden disable-input-user" name="newTaskAssigned" id="newTaskAssigned">
+                           {% for user in users %}
+                           <option value={{ user.id }}>{{ user.username }}</option>
+                           {% endfor %}
+                        </select>
+                     </div>
+
+                     <div class="flex justify-evenly items-center my-2 border-solid disable-input-user">
+                        <label class="w-2/6" for="status">Status:</label>
+                        <label class="w-3/6" for="status">DJANGO</label>
+                        <select class="w-4/6 hidden disable-input-user" name="newTaskStatus" id="newTaskStatus"
+                           required>
+                           <option value="To Do">ToDo</option>
+                           <option value="Working">Working</option>
+                           <option value="Waiting">Waiting</option>
+                           <option value="Done">Done</option>
+                        </select>
+                     </div>
+
+                     <div class="flex justify-evenly w-full my-2">
+                        <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 rounded-md hover:bg-opacity-50"
+                           type="submit">Edit task</button>
+                           <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 rounded-md hover:bg-opacity-50 hidden" type="submit">Save
+                              task</button>
+                     </div>
+               </form>
+
+
+
+            </div>
+            <br>
+            <br>
+            <br>
+            <hr>
             {% for todo in toDos %}
             <p>{{ todo.title }}</p>
             <p>{{ todo.description }}</p>
