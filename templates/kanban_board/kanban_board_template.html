@@ -74,15 +74,10 @@
          </div>
       </div>
 
-      <div class="topnav">
-         <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active">To Do</a>
-         <div id="to_do" style="display: block">
-            <div>CONTENT TEMPLATE</div>
-            <br>
-            <hr>
-            <br>
-
-            <div class="border-2 border-gray-300 bg-blue-100 w-72 rounded-md">
+      <div class="topnav flex flex-col items-center">
+         <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active w-full">To Do</a>
+         <div id="to_do" class="w-full flex-col items-center py-2" style="display: flex">
+            <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
                <form action="" method="post" class="w-full px-4">
                   {% csrf_token %} {{ form.as_p }}
                   {% comment %} <div class="hidden" id="TaskId_{{ todo.id }}" </div> {% endcomment %}
@@ -142,10 +137,12 @@
                      </div>
 
                      <div class="flex justify-evenly w-full my-2">
-                        <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 rounded-md hover:bg-opacity-50"
-                           type="submit">Edit task</button>
-                           <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 rounded-md hover:bg-opacity-50 hidden" type="submit">Save
-                              task</button>
+                        <div
+                           class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50"
+                           onclick="removeDisableUser()">Edit task</div>
+                        <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 rounded-md hover:bg-opacity-50 hidden"
+                           type="submit">Save
+                           task</button>
                      </div>
                </form>
 
@@ -205,6 +202,10 @@
       } else {
          x.style.display = "block";
       }
+   }
+
+   function removeDisableUser() {
+      alert('HALLE')
    }
 </script>
 
