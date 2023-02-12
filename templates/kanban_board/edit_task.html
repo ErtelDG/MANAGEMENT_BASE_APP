@@ -11,7 +11,7 @@
    <div class="topnav">
       <a class="active">Edit Task</a>
       <div id="add_Task" class="w-full flex-col items-center pt-2" style="display: flex">
-         <form action="add-task-successfully/" method="post" class="w-full px-4">
+         <form action={% url 'edit_task_successfully' editTask.id  %} method="post" class="w-full px-4">
             {% csrf_token %} {{ form.as_p }}
             <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" value="{{ editTask.title }}" minlength="5" maxlength="50" required />
 
