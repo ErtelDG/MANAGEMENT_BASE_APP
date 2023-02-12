@@ -1,0 +1,22 @@
+{% extends "base/base_template.html" %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/kanban_board_css/create_task.css' %}" />
+
+<div class="mdl-card__title mdl-card--expand border-b-4 mb-4">
+   <div class="mdl-card--border text-center w-full text-xl font-semibold">KANBAN Board</div>
+</div>
+
+<div class="flex justify-center w-full">
+     <div class="topnav w-full max-w-128">
+         <a href="javascript:void(0);" onclick="myFunction('add_Task')" class="active">Add new Task</a>
+         <div id="add_Task" class="w-full flex-col items-center pt-2" style="display: flex">
+            <div class="w-full flex justify-center align-middle">
+               <div id="infoAddTask" class="info-add-task">New task successfully</div>
+            </div>
+            <div class="flex justify-evenly w-full my-2">
+              <button class="w-3/5 text-white px-4 my-2 bg-blue-800 hover:bg-opacity-50"><a href="{% url 'index_kanban_board' %}"> Back to KANBAN Board</a></button>
+           </div>
+   
+         </div>
+      </div>
+</div>
+{% endblock %}

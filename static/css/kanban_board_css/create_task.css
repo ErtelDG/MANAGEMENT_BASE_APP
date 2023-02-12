@@ -1,0 +1,98 @@
+.disable-input-user {
+  background-color: #f0f7ff;
+  border-radius: 0.25rem;
+  resize: none;
+  -ms-overflow-style: none !important;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none !important;
+  /* Firefox */
+  padding: 4px;
+  border-color: transparent;
+}
+
+
+
+.disable-input-user::-webkit-scrollbar {
+  display: none !important;
+  /* Safari and Chrome */
+}
+
+
+
+.info-add-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 0px;
+  background-color: lightgreen;
+  width: 60%;
+  animation-name: show-info-add-task;
+  animation-duration: 5s;
+  height: 3rem;
+  font-size: 1rem;
+}
+
+@keyframes show-info-add-task {
+  0% {
+    height: 0rem;
+    visibility: unset;
+    font-size: 0rem
+  }
+
+  25% {
+    font-size: 1rem;
+  }
+
+  50% {
+    height: 3rem;
+  }
+
+  65% {
+    font-size: 1rem;
+  }
+
+  100% {
+    font-size: 1rem;
+  }
+
+}
+
+
+.w-100 {
+  width: 100% !important;
+}
+
+
+.textcenter {
+  text-align: center !important;
+}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.05);
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.topnav #myLinks {
+  display: none;
+}
+
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+}
+
+.active {
+  background-color: #3F51B5;
+  color: white;
+}
+
+/*!
+ *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */

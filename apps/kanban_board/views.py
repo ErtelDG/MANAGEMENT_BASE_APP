@@ -6,25 +6,6 @@ from kanban_board.models import Task
 
 def index_kanban_board(request):
     
-   
-    
-    if request.method == 'POST':
-        userList = User.objects.all()
-      
-        Task.objects.create(
-            title = request.POST["newTaskTitle"],
-            description=request.POST["newTaskDescription"],
-            prio = request.POST["newTaskPrio"],
-            member_type=request.POST["newMemberType"],
-            assigned=User.objects.get(pk=request.POST["newTaskAssigned"]),
-            status=request.POST["newTaskStatus"],
-            created_at = datetime.now(),
-            updated_at = datetime.now(),
-        )
-                  
-        your_variable =['Hallo Noob','Hallo Noob2','Hallo Noob3']   
-        return render(request, 'kanban_board/kanban_board_template.html',{'WERT1':your_variable, 'responseInfoAddTaskCreated': 'New task successfully', 'users': userList})
-    
     if request.method == 'GET':
         toDo = Task.objects.filter(status="ToDo")
         working = Task.objects.filter(status="Working")
@@ -41,4 +22,22 @@ def index_kanban_board(request):
 
 
 def create_new_task(request):
-    return render(request, 'kanban_board/kanban_board_template.html',  {'WERT1':'HARD CODE VALUE1', 'DATABASE':'HARD CODE DATABASE VALUE1'})
+    userList = User.objects.all()
+    return render(request, 'kanban_board/create_task.html', {'users': userList})
+
+def new_task_successfully(request):
+
+    if request.method == 'POST':
+        
+        Task.objects.create(
+            title = request.POST["newTaskTitle"],
+            description=request.POST["newTaskDescription"],
+            prio = request.POST["newTaskPrio"],
+            member_type=request.POST["newMemberType"],
+            assigned=User.objects.get(pk=request.POST["newTaskAssigned"]),
+            status=request.POST["newTaskStatus"],
+            created_at = datetime.now(),
+            updated_at = datetime.now(),
+        )
+
+    return render(request, 'kanban_board/create_succsessfully.html')
