@@ -9,16 +9,17 @@
 
 <div class="flex justify-center">
    <div class="topnav">
+     
       <a class="active">Edit Task</a>
       <div id="add_Task" class="w-full flex-col items-center pt-2" style="display: flex">
          <form action={% url 'edit_task_successfully' editTask.id  %} method="post" class="w-full px-4">
             {% csrf_token %} {{ form.as_p }}
-            <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" value="{{ editTask.title }}" minlength="5" maxlength="50" required />
+            <input class="w-full my-2" type="text" name="editTitle" id="editTitle" value="{{ editTask.title }}" minlength="5" maxlength="50" required />
 
             <textarea
                class="w-full my-2"
-               name="newTaskDescription"
-               id="newTaskDescription"
+               name="editDescription"
+               id="editDescription"
                placeholder="Description..."
                minlength="10"
                maxlength="255"
@@ -31,7 +32,7 @@
 
             <div class="flex justify-evenly items-center my-2">
                <label class="w-2/6" for="prio">Prio:</label>
-               <select class="w-4/6" name="newTaskPrio" id="newTaskPrio">
+               <select class="w-4/6" name="editPrio" id="editPrio">
                   <option selected="selected">{{ editTask.prio }}</option>
                   <option value="LOW">Low</option>
                   <option value="MEDIUM">Medium</option>
@@ -41,7 +42,7 @@
 
             <div class="flex justify-evenly items-center my-2">
                <label class="w-2/6" for="memberType">Area:</label>
-               <select class="w-4/6" name="newMemberType" id="newMemberType" required>
+               <select class="w-4/6" name="editType" id="editType" required>
                   <option selected="selected">{{ editTask.member_type }}</option>
                   <option value="Frontend">Frontend</option>
                   <option value="Backend">Backend</option>
@@ -54,8 +55,8 @@
 
             <div class="flex justify-evenly items-center my-2">
                <label class="w-2/6" for="prio">Assigned:</label>
-               <select class="w-4/6" name="newTaskAssigned" id="editTaskAssigned">
-                  <option selected="selected">{{ currentUser }}</option>
+               <select class="w-4/6" name="editAssigned" id="editAssigned">
+                  <option  selected="selected">{{ currentUser }}</option>
                   {% for user in users %}
                   <option value="{{ user.id }}">{{ user.username }}</option>
                   {% endfor %}
@@ -64,7 +65,7 @@
 
             <div class="flex justify-evenly items-center my-2">
                <label class="w-2/6" for="status">Status:</label>
-               <select class="w-4/6" name="newTaskStatus" id="newTaskStatus" required>
+               <select class="w-4/6" name="editStatus" id="editStatus" required>
                   <option selected="selected">{{ editTask.status }}</option>
                   <option value="ToDo">ToDo</option>
                   <option value="Working">Working</option>

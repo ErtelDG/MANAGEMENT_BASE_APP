@@ -49,19 +49,16 @@ def edit_task(request, task_id):
 
 
 def edit_task_successfully(request, task_id):
-
     
-#if request.method == 'POST':
+    if request.method == 'POST':
+        editTask = Task.objects.get(id=task_id)
+        editTask.title =request.POST.get('editTitle')
+        editTask.description = request.POST.get('editDescription')
+        editTask.prio=request.POST.get('editPrio')
+        editTask.member_type=request.POST.get('editType')
+        #editTask.assigned=User.objects.get(pk=request.POST('editAssigned')),
+        editTask.status=request.POST.get('editStatus')
+        editTask.updated_at = datetime.now()
+        editTask.save()
         
-        # Task.objects.create(
-        #     title = request.POST["newTaskTitle"],
-        #     description=request.POST["newTaskDescription"],
-        #     prio = request.POST["newTaskPrio"],
-        #     member_type=request.POST["newMemberType"],
-        #     assigned=User.objects.get(pk=request.POST["newTaskAssigned"]),
-        #     status=request.POST["newTaskStatus"],
-        #     created_at = datetime.now(),
-        #     updated_at = datetime.now(),
-        # )
-
     return render(request, 'kanban_board/edit_succsessfully.html')
