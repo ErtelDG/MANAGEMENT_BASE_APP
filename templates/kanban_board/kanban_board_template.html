@@ -1,26 +1,24 @@
 {% extends "base/base_template.html" %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'css/kanban_board_css/kanban_board.css' %}" />
 <div class="flex justify-center border-b-4 mb-4">
-<div class="w-full sm:max-w-lg flex justify-evenly">
-   <div class="mdl-card__title mdl-card--expand">
-      <div class="mdl-card--border text-xl font-semibold">KANBAN Board</div>
+   <div class="w-full sm:max-w-lg flex justify-evenly">
+      <div class="mdl-card__title mdl-card--expand">
+         <div class="mdl-card--border text-xl font-semibold">KANBAN Board</div>
+      </div>
+      <form method="post" action="add-task/">
+         {% csrf_token %}
+         <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--primary" id="tt3">
+            <i class="material-icons">add</i>
+         </button>
+      </form>
+      <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="tt3">
+         <strong>Add new Task</strong>
+      </div>
    </div>
-<form method="post" action="add-task/" >
-{% csrf_token %}
-<button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--primary" id="tt3">
-  <i class="material-icons">add</i>
-  </button>
-  </form>
-<div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="tt3">
-<strong>Add new Task</strong>
-</div>
-</div>
 </div>
 
 <div class="flex justify-center">
    <div class="w-full sm:max-w-lg h-5/6">
-    
-
       <div class="topnav flex flex-col items-center">
          <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active w-full">To Do</a>
          <div id="to_do" class="w-full flex-col items-center py-2" style="display: flex">
@@ -28,127 +26,232 @@
             <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
                <form action="" method="post" class="w-full px-4">
                   {% csrf_token %} {{ form.as_p }}
-                  <div class="hidden" id="TaskId_{{ todo.id }}"></div>
-                     <input class="w-full my-2 disable-input-user text-lg" type="text" name="toDoTitle"
-                        id="toDoTitle_{{ todo.id }}" placeholder="Title..." value="{{ todo.title }}" minlength="5" maxlength="50"
-                        required disabled />
-                     <textarea class="w-full my-2 disable-input-user" name="newTaskDescription" id="toDoDescription_{{ todo.id }}"
-                        placeholder="Description..." minlength="10" maxlength="255" required rows="5"
-                        disabled>{{ todo.description }}</textarea>
+                  <div class="hidden" id="taskId_{{ todo.id }}"></div>
 
-                     <div class="flex justify-evenly items-center my-2 disable-input-user">
-                        <label class="w-2/6 disable-input-user" for="prio">Prio:</label>
-                        <label class="w-3/6 disable-input-user" id="toDoPrioHidden_{{ todo.id }}" for="prio">{{ todo.prio }}</label>
-                        <select class="w-4/6 disable-input-user hidden" name="toDoPrio" id="toDoPrioRemoveHidden_{{ todo.id }}" disabled required>
-                           <option value="LOW">Low</option>
-                           <option value="MEDIUM">Medium</option>
-                           <option value="URGENT">Urgent</option>
-                        </select>
-                     </div>
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <label class="w-full text-center font-semibold text-xl" id="todoTitleHidden_{{ todo.id }}" for="todoTitle">{{ todo.title }}</label>
+                  </div>
 
-                     <div class="flex justify-evenly items-center my-2 disable-input-user">
-                        <label class="w-2/6" for="memberType">Area:</label>
-                        <label class="w-3/6" id="toDoAreaHidden_{{ todo.id }}" for="memberType">{{ todo.member_type }}</label>
-                        <select class="w-4/6 hidden disable-input-user" name="toDoType" id="toDoAreaRemoveHidden_{{ todo.id }}" disable   required>
-                           <option value="Frontend">Frontend</option>
-                           <option value="Backend">Backend</option>
-                           <option value="Ui Ux Design">UI/UX Design</option>
-                           <option value="Product Owner">Product Owner</option>
-                           <option value="Srum Master">Srum Master</option>
-                           <option value="Testing">Testing</option>
-                        </select>
-                     </div>
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <label class="w-full text-center text-lg" id="todoDescriptionHidden_{{ todo.id }}" for="todoDescription">{{ todo.description }}</label>
+                  </div>
 
-                     <div class="flex justify-evenly items-center my-2 disable-input-user">
-                        <label class="w-2/6" for="prio">Assigned:</label>
-                        <label class="w-3/6" id="toDoAssignedHidden_{{ todo.id }}" for="prio">{{ user.username }}</label>
-                        <select class="w-4/6 hidden disable-input-user" name="toDoAssigned" id="toDoAssignedRemoveHidden_{{ todo.id }}">
-                           {% for user in users %}
-                           <option value={{ user.id }}>{{ user.username }}</option>
-                           {% endfor %}
-                        </select>
-                     </div>
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="prio">Prio:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="todoPrioHidden_{{ todo.id }}" for="prio">{{ todo.prio }}</label>
+                  </div>
 
-                     <div class="flex justify-evenly items-center my-2 border-solid disable-input-user">
-                        <label class="w-2/6" for="status">Status:</label>
-                        <label class="w-3/6" id="toDoStatusHidden_{{ todo.id }}" for="status">{{ todo.status }}</label>
-                        <select class="w-4/6 hidden disable-input-user" name="toDoStatus" id="toDoStatus"
-                           required>
-                           <option value="ToDo">ToDo</option>
-                           <option value="Working">Working</option>
-                           <option value="Waiting">Waiting</option>
-                           <option value="Done">Done</option>
-                        </select>
-                     </div>
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="memberType">Area:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="todoAreaHidden_{{ todo.id }}" for="memberType">{{ todo.member_type }}</label>
+                  </div>
 
-                     <div class="flex justify-evenly w-full my-2">
-                        <div
-                           class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50"
-                           onclick="removeDisableUser()">Edit task</div>
-                        <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 rounded-md hover:bg-opacity-50 hidden" id="toDoSaveTaskButton_{{ todo.id }}"
-                           type="submit">Save
-                           task</button>
-                     </div>
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="prio">Assigned:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="todoAssignedHidden_{{ todo.id }}" for="prio">{{ user.username }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="status">Status:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="todoStatusHidden_{{ todo.id }}" for="status">{{ todo.status }}</label>
+                  </div>
+
+                  <div class="flex justify-evenly w-full my-2">
+                     <div class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</div>
+                  </div>
                </form>
             </div>
             {% endfor %}
-         
          </div>
       </div>
 
       <div class="topnav">
          <a href="javascript:void(0);" onclick="myFunction('working')" class="active">Working</a>
-         <div id="working" style="display: none">
-            <div>CONTENT WORKING</div>
+         <div id="working" class="w-full flex-col items-center py-2" style="display: flex">
             {% for working in workings %}
-            <p>{{ working.title }}</p>
-            <p>{{ working.description }}</p>
-            <p>{{ working.prio }}</p>
-            <p>{{ working.member_type }}</p>
-            <p>{{ working.assigned_id }}</p>
-            <p>{{ working.status }}</p>
+            <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
+               <form action="" method="post" class="w-full px-4">
+                  {% csrf_token %} {{ form.as_p }}
+                  <div class="hidden" id="taskId_{{ working.id }}"></div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <label class="w-full text-center font-semibold text-xl" id="workingTitleHidden_{{ working.id }}" for="workingTitle"
+                        >{{ working.title }}</label
+                     >
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <label class="w-full text-center text-lg" id="workingDescriptionHidden_{{ working.id }}" for="workingDescription"
+                        >{{ working.description }}</label
+                     >
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="prio">Prio:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="workingPrioHidden_{{ working.id }}" for="prio">{{ working.prio }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="memberType">Area:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="workingAreaHidden_{{ working.id }}" for="memberType">{{ working.member_type }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="prio">Assigned:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="workingAssignedHidden_{{ working.id }}" for="prio">{{ user.username }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="status">Status:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="workingStatusHidden_{{ working.id }}" for="status">{{ working.status }}</label>
+                  </div>
+
+                  <div class="flex justify-evenly w-full my-2">
+                     <div class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</div>
+                  </div>
+               </form>
+            </div>
             {% endfor%}
          </div>
       </div>
 
       <div class="topnav">
          <a href="javascript:void(0);" onclick="myFunction('waiting')" class="active">Waiting</a>
-         <div id="waiting" style="display: none">
-            <div>CONTENT WAITING</div>
+         <div id="waiting" class="w-full flex-col items-center py-2" style="display: flex">
+            {% for waiting in waitings %}
+            <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
+               <form action="" method="post" class="w-full px-4">
+                  {% csrf_token %} {{ form.as_p }}
+                  <div class="hidden" id="taskId_{{ waiting.id }}"></div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <label class="w-full text-center font-semibold text-xl" id="waitingTitleHidden_{{ waiting.id }}" for="waitingTitle"
+                        >{{ waiting.title }}</label
+                     >
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <label class="w-full text-center text-lg" id="waitingDescriptionHidden_{{ waiting.id }}" for="waitingDescription"
+                        >{{ waiting.description }}</label
+                     >
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="prio">Prio:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="waitingPrioHidden_{{ waiting.id }}" for="prio">{{ waiting.prio }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="memberType">Area:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="waitingAreaHidden_{{ waiting.id }}" for="memberType">{{ waiting.member_type }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="prio">Assigned:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="waitingAssignedHidden_{{ waiting.id }}" for="prio">{{ user.username }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="status">Status:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="waitingStatusHidden_{{ waiting.id }}" for="status">{{ waiting.status }}</label>
+                  </div>
+
+                  <div class="flex justify-evenly w-full my-2">
+                     <div class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</div>
+                  </div>
+               </form>
+            </div>
+            {% endfor%}
          </div>
       </div>
 
       <div class="topnav">
          <a href="javascript:void(0);" onclick="myFunction('done')" class="active">Done</a>
-         <div id="done" style="display: none">
-            <div>CONTENT DONE</div>
+         <div id="waiting" class="w-full flex-col items-center py-2" style="display: flex">
+            {% for done in dones %}
+            <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
+               <form action="" method="post" class="w-full px-4">
+                  {% csrf_token %} {{ form.as_p }}
+                  <div class="hidden" id="doneId_{{ done.id }}"></div>
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <label class="w-full text-center font-semibold text-xl" id="doneTitleHidden_{{ done.id }}" for="doneTitle">{{ done.title }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <label class="w-full text-center text-lg" id="doneDescriptionHidden_{{ done.id }}" for="doneDescription">{{ done.description }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="prio">Prio:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="donePrioHidden_{{ done.id }}" for="prio">{{ done.prio }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="memberType">Area:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="doneAreaHidden_{{ done.id }}" for="memberType">{{ done.member_type }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="prio">Assigned:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="doneAssignedHidden_{{ done.id }}" for="prio">{{ user.username }}</label>
+                  </div>
+
+                  <div class="flex w-full items-center my-2 border-solid disable-input-user">
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" for="status">Status:</label>
+                     <div class="w-1/12"></div>
+                     <label class="w-5/12 text-left" id="doneStatusHidden_{{ done.id }}" for="status">{{ done.status }}</label>
+                  </div>
+
+                  <div class="flex justify-evenly w-full my-2">
+                     <div class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</div>
+                  </div>
+               </form>
+               {% endfor%}
+            </div>
          </div>
       </div>
    </div>
-</div>
-<script>
-   function myFunction(content) {
-      var x = document.getElementById(content);
-      if (x.style.display === "flex") {
-         x.style.display = "none";
-      } else {
-         x.style.display = "flex";
+   <script>
+      function myFunction(content) {
+         var x = document.getElementById(content);
+         if (x.style.display === "flex") {
+            x.style.display = "none";
+         } else {
+            x.style.display = "flex";
+         }
       }
-   }
+   </script>
 
-   function removeDisableUser() {
-      let elems = document.getElementsByClassName("disable-input-user");
-      [].forEach.call(elems, function (el) {
-         el.classList.remove("disable-input-user");
-      });
-   }
-
-   function showInfoCreated(){
-      let elem = document.getElementById("infoAddTask");
-      elem.classList.remove("hidden");
-      elem.classList.add("info-add-task");
-   
-   }
-</script>
-
-{% endblock %}
+   {% endblock %}
+</div>
