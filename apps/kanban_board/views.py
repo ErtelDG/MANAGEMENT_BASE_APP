@@ -40,13 +40,12 @@ def new_task_successfully(request):
 
 
 def edit_task(request, task_id):
+    userList = User.objects.all()
     id = task_id
-    selectedTask = Task.objects.get(pk=id)
-        
-    print('DRUCKEN DRUCKEN DRUCKEN',selectedTask),
-    userList = User.objects.all(),
-
-    return render(request, 'kanban_board/edit_task.html', {'editTask':selectedTask, 'users': userList})
+    selectedTask = Task.objects.get(pk=id)    
+    user = User.objects.get(pk=selectedTask.assigned_id)
+            
+    return render(request, 'kanban_board/edit_task.html', {'editTask':selectedTask, 'users': userList, 'currentUser': user})
 
 
 def edit_task_successfully(request):

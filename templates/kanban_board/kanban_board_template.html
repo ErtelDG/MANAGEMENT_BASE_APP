@@ -131,9 +131,9 @@
                      <label class="w-5/12 text-left" id="workingStatusHidden_{{ working.id }}" for="status">{{ working.status }}</label>
                   </div>
 
-                  <button type="submit" class="flex justify-evenly w-full my-2">
-                     <div class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</div>
-                  </button>
+                  <div class="flex justify-evenly w-full my-2">
+                     <a href="{% url 'edit_task' task_id=working.id  %}" class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</a>
+                  </div>
                </form>
             </div>
             {% endfor%}
@@ -193,9 +193,9 @@
                      <label class="w-5/12 text-left" id="waitingStatusHidden_{{ waiting.id }}" for="status">{{ waiting.status }}</label>
                   </div>
 
-                  <button type="submit" class="flex justify-evenly w-full my-2">
-                     <div class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</div>
-                  </button>
+                  <div class="flex justify-evenly w-full my-2">
+                     <a href="{% url 'edit_task' task_id=waiting.id  %}" class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</a>
+                  </div>
                </form>
             </div>
             {% endfor%}
@@ -250,9 +250,9 @@
                      <label class="w-5/12 text-left" id="doneStatusHidden_{{ done.id }}" for="status">{{ done.status }}</label>
                   </div>
 
-                  <button type="submit" class="flex justify-evenly w-full my-2">
-                     <div class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</div>
-                  </button>
+                  <div class="flex justify-evenly w-full my-2">
+                      <a href="{% url 'edit_task' task_id=done.id  %}" class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</a>
+                  </div>
                </form>
                {% endfor%}
             </div>
