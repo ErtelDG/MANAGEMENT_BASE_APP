@@ -8,7 +8,7 @@
       <form method="post" action="add-task/" class="flex items-end h-full">
          {% csrf_token %}
          <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--primary flex justify-end" id="tt3">
-            <i class="material-icons">add</i>
+            <i class="material-icons">add_task</i>
          </button>
       </form>
       <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="tt3">
@@ -20,8 +20,9 @@
 <div class="flex justify-center">
    <div class="w-full sm:max-w-lg h-5/6">
       <div class="topnav flex flex-col items-center">
-         <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active w-full">To Do</a>
-         <div id="to_do" class="w-full flex-col items-center py-2" style="display: flex">
+         <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active w-full"><div>To Do</div>    <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{ toDos.count }}">assignment_ind</div></a>
+     
+         <div id="to_do" class="w-full flex-col items-center py-2" style="display: none">
             {% for todo in toDos %}
             <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
                <form action="edit-task/" method="post" class="w-full px-4">
@@ -69,8 +70,9 @@
                      <label class="w-5/12 text-left" id="todoStatusHidden_{{ todo.id }}" for="status">{{ todo.status }}</label>
                   </div>
 
-                  <div class="flex justify-evenly w-full my-2">
+                  <div class="flex justify-evenly w-full my-2 gap-x-4">
                      <a href="{% url 'edit_task' task_id=todo.id  %}" class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</a>
+                     <a href="{% url 'delete_task' task_id=todo.id  %}" class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Delete task</a>
                   </div>
                </form>
             </div>
@@ -78,9 +80,9 @@
          </div>
       </div>
 
-      <div class="topnav">
-         <a href="javascript:void(0);" onclick="myFunction('working')" class="active">Working</a>
-         <div id="working" class="w-full flex-col items-center py-2" style="display: flex">
+      <div class="topnav flex flex-col items-center">
+         <a href="javascript:void(0);" onclick="myFunction('working')" class="active w-full"><div>Working</div><div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{ workings.count }}">assignment</div></a>
+         <div id="working" class="w-full flex-col items-center py-2" style="display: none">
             {% for working in workings %}
             <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
                <form action="edit-task/" method="post" class="w-full px-4">
@@ -131,8 +133,10 @@
                      <label class="w-5/12 text-left" id="workingStatusHidden_{{ working.id }}" for="status">{{ working.status }}</label>
                   </div>
 
-                  <div class="flex justify-evenly w-full my-2">
+                  <div class="flex justify-evenly w-full my-2 gap-x-4">
                      <a href="{% url 'edit_task' task_id=working.id  %}" class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</a>
+                      <a href="{% url 'delete_task' task_id=working.id  %}" class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Delete task</a>
+                     
                   </div>
                </form>
             </div>
@@ -140,9 +144,9 @@
          </div>
       </div>
 
-      <div class="topnav">
-         <a href="javascript:void(0);" onclick="myFunction('waiting')" class="active">Waiting</a>
-         <div id="waiting" class="w-full flex-col items-center py-2" style="display: flex">
+      <div class="topnav flex flex-col items-center">
+         <a href="javascript:void(0);" onclick="myFunction('waiting')" class="active w-full"><div>Waiting</div><div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{ waitings.count }}">hourglass_empty</div></a>
+         <div id="waiting" class="w-full flex-col items-center py-2" style="display: none">
             {% for waiting in waitings %}
             <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
                <form action="edit-task/" method="post" class="w-full px-4">
@@ -193,8 +197,9 @@
                      <label class="w-5/12 text-left" id="waitingStatusHidden_{{ waiting.id }}" for="status">{{ waiting.status }}</label>
                   </div>
 
-                  <div class="flex justify-evenly w-full my-2">
+                  <div class="flex justify-evenly w-full my-2 gap-x-4">
                      <a href="{% url 'edit_task' task_id=waiting.id  %}" class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</a>
+                      <a href="{% url 'delete_task' task_id=waiting.id  %}" class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Delete task</a>
                   </div>
                </form>
             </div>
@@ -202,9 +207,9 @@
          </div>
       </div>
 
-      <div class="topnav">
-         <a href="javascript:void(0);" onclick="myFunction('done')" class="active">Done</a>
-         <div id="done" class="w-full flex-col items-center py-2" style="display: flex">
+      <div class="topnav flex flex-col items-center">
+         <a href="javascript:void(0);" onclick="myFunction('done')" class="active w-full"><div>Done</div><div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{ dones.count }}">task_alt</div></a>
+         <div id="done" class="w-full flex-col items-center py-2" style="display: none">
             {% for done in dones %}
             <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
                <form action="edit-task/" method="post" class="w-full px-4">
@@ -250,9 +255,11 @@
                      <label class="w-5/12 text-left" id="doneStatusHidden_{{ done.id }}" for="status">{{ done.status }}</label>
                   </div>
 
-                  <div class="flex justify-evenly w-full my-2">
+                 <div class="flex justify-evenly w-full my-2 gap-x-4">
                       <a href="{% url 'edit_task' task_id=done.id  %}" class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Edit task</a>
+                      <a href="{% url 'delete_task' task_id=done.id  %}" class="w-48 text-white text-center px-4 py-2 my-2 bg-blue-800 rounded-md hover:cursor-pointer hover:bg-opacity-50">Delete task</a>  
                   </div>
+                  
                </form>
               
             </div>

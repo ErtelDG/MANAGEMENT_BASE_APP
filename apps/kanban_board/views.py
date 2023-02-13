@@ -62,3 +62,20 @@ def edit_task_successfully(request, task_id):
         editTask.save()
         
     return render(request, 'kanban_board/edit_succsessfully.html')
+
+
+def delete_task(request, task_id):
+    userList = User.objects.all()
+    id = task_id
+    selectedTask = Task.objects.get(pk=id)    
+    user = User.objects.get(pk=selectedTask.assigned_id)
+            
+    return render(request, 'kanban_board/delete_task.html', {'deleteTask':selectedTask, 'users': userList, 'currentUser': user})
+
+def delete_task_successfully(request, task_id):
+    
+    if request.method == 'POST':
+        deleteTask = Task.objects.get(id=task_id)
+        deleteTask.delete()
+        
+    return render(request, 'kanban_board/delete_succsessfully.html')
