@@ -21,11 +21,13 @@
 </div>
 
 <div class="flex justify-center">
-   <div class="w-full sm:max-w-lg h-5/6">
-      <div class="topnav flex flex-col items-center" style="padding-top: 1rem">
-         <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active w-full"><div>To Do</div>    <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{ toDos.count }}">assignment_ind</div></a>
+   <div class="w-full sm:max-w-lg xl:max-w-full xl:gap-x-4 xl:flex h-5/6">
+      <div class="topnav flex flex-col items-center padding-top-1rem xl:w-1/4">
+         <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active w-full"><div>To Do</div>
+            <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{ toDos.count }}">assignment_ind</div>
+         </a>
      
-         <div id="to_do" class="w-full flex-col items-center py-2" style="display: none">
+         <div id="to_do" class="bg-topnav w-full flex flex-col items-center py-2 list-hidden">
             {% for todo in toDos %}
             <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
                <form action="edit-task/" method="post" class="w-full px-4">
@@ -83,9 +85,9 @@
          </div>
       </div>
 
-      <div class="topnav flex flex-col items-center">
+      <div class="topnav flex flex-col items-center xl:w-1/4">
          <a href="javascript:void(0);" onclick="myFunction('working')" class="active w-full"><div>Working</div><div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{ workings.count }}">assignment</div></a>
-         <div id="working" class="w-full flex-col items-center py-2" style="display: none">
+         <div id="working" class="w-full flex flex-col items-center py-2 bg-topnav list-hidden">
             {% for working in workings %}
             <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
                <form action="edit-task/" method="post" class="w-full px-4">
@@ -147,9 +149,9 @@
          </div>
       </div>
 
-      <div class="topnav flex flex-col items-center">
+      <div class="topnav flex flex-col items-center xl:w-1/4">
          <a href="javascript:void(0);" onclick="myFunction('waiting')" class="active w-full"><div>Waiting</div><div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{ waitings.count }}">hourglass_empty</div></a>
-         <div id="waiting" class="w-full flex-col items-center py-2" style="display: none">
+         <div id="waiting" class="w-full flex flex-col items-center py-2 bg-topnav list-hidden">
             {% for waiting in waitings %}
             <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
                <form action="edit-task/" method="post" class="w-full px-4">
@@ -210,9 +212,9 @@
          </div>
       </div>
 
-      <div class="topnav flex flex-col items-center">
+      <div class="topnav  flex flex-col items-center xl:w-1/4">
          <a href="javascript:void(0);" onclick="myFunction('done')" class="active w-full"><div>Done</div><div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{ dones.count }}">task_alt</div></a>
-         <div id="done" class="w-full flex-col items-center py-2" style="display: none">
+         <div id="done" class="w-full flex flex-col items-center py-2 bg-topnav list-hidden">
             {% for done in dones %}
             <div class="border-2 border-gray-300 bg-blue-100 w-11/12 rounded-md my-2">
                <form action="edit-task/" method="post" class="w-full px-4">
@@ -273,10 +275,10 @@
    <script>
       function myFunction(content) {
          var x = document.getElementById(content);
-         if (x.style.display === "flex") {
-            x.style.display = "none";
+         if (x.classList.contains("list-hidden")) {
+            x.classList.remove('list-hidden');
          } else {
-            x.style.display = "flex";
+            x.classList.add('list-hidden');
          }
       }
    </script>

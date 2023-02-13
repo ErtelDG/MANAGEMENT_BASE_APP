@@ -76,9 +76,17 @@
 
 .topnav {
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.05);
+  
   position: relative;
   padding-bottom: 1rem;
+}
+
+.list-hidden{
+  display: none;
+}
+
+.bg-topnav{
+background-color: rgba(0, 0, 0, 0.05);
 }
 
 .topnav #myLinks {
@@ -104,6 +112,15 @@
   justify-content: space-between;
 }
 
+.padding-top-1rem {
+  padding-top: 1rem !important;
+}
+
+@media (min-width: 1280px) {
+  .padding-top-1rem {
+    padding-top: unset !important;
+  }
+}
 
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
