@@ -1,5 +1,8 @@
 {% extends "base/base_template.html" %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'css/kanban_board_css/kanban_board.css' %}" />
+<link rel="stylesheet" href="{% static 'css/home_css/home.css' %}" />
+
+{% if user.is_authenticated %}
 <div class="flex justify-center border-b-4 mb-4">
    <div class="w-full sm:max-w-lg flex justify-evenly items-center">
       <div class="mdl-card__title mdl-card--expand flex items-center">
@@ -7,7 +10,7 @@
       </div>
       <form method="post" action="add-task/" class="flex items-end h-full">
          {% csrf_token %}
-         <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--primary flex justify-end" id="tt3">
+         <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--primary flex justify-end" style="margin-right: 1rem" id="tt3">
             <i class="material-icons">add_task</i>
          </button>
       </form>
@@ -19,7 +22,7 @@
 
 <div class="flex justify-center">
    <div class="w-full sm:max-w-lg h-5/6">
-      <div class="topnav flex flex-col items-center">
+      <div class="topnav flex flex-col items-center" style="padding-top: 1rem">
          <a href="javascript:void(0);" onclick="myFunction('to_do')" class="active w-full"><div>To Do</div>    <div class="material-icons mdl-badge mdl-badge--overlap" data-badge="{{ toDos.count }}">assignment_ind</div></a>
      
          <div id="to_do" class="w-full flex-col items-center py-2" style="display: none">
@@ -278,5 +281,19 @@
       }
    </script>
 
-   {% endblock %}
+ 
 </div>
+{% else %}
+<div class="contain_center_content">
+   <div class="demo-card-square mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title mdl-card--expand"></div>
+      <div class="mdl-card__supporting-text center-elements">Access denied!</div>
+      <div class="mdl-card__actions mdl-card--border flex justify-evenly">
+         <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="{% url 'login' %}"> Log In </a>
+         <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" href="{% url 'signup_user' %}"> Sign Up </a>
+      </div>
+   </div>
+  </div>
+   {% endif %}
+  
+{% endblock %}
