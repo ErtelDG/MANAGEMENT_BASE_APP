@@ -807,10 +807,6 @@ select {
   width: 91.666667%;
 }
 
-.max-w-lg {
-  max-width: 32rem;
-}
-
 .flex-col {
   flex-direction: column;
 }
@@ -991,10 +987,6 @@ select {
 @media (min-width: 1280px) {
   .xl\:flex {
     display: flex;
-  }
-
-  .xl\:w-screen {
-    width: 100vw;
   }
 
   .xl\:w-1\/4 {
