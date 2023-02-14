@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.template import loader
 from datetime import datetime
 from kanban_board.models import Task
+from django.utils import timezone
 
 
 """
@@ -55,8 +56,8 @@ def new_task_successfully(request):
             member_type=request.POST["newMemberType"],
             assigned=User.objects.get(pk=request.POST["newTaskAssigned"]),
             status=request.POST["newTaskStatus"],
-            created_at = datetime.now(),
-            updated_at = datetime.now(),
+            created_at = timezone.now(),
+            updated_at = timezone.now(),
         )
     return render(request, 'kanban_board/create_succsessfully.html')
 
