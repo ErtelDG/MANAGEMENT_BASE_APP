@@ -1,9 +1,9 @@
-from django.urls import path, re_path
-
+# Importing the path and views from the current directory.
+from django.urls import path
 from . import views
 
 
-# HIER PATH VON DER MANAGEMENT APP:
+# A list of URL patterns.
 urlpatterns = [
     path('', views.index_kanban_board, name='index_kanban_board'),
     path('add-task/', views.create_new_task, name='create_new_task'),

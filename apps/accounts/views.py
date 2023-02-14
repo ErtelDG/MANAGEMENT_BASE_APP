@@ -1,13 +1,24 @@
+# Importing the render function from the django.shortcuts module.
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+
+"""
+It takes a request object, and returns a rendered template
+
+:param request: The request is an HttpRequest object
+:return: The render function is being returned.
+"""
 def index_accounts(request):
     return render(request, 'accounts/accounts_template.html')
 
-# signUp view
+
+"""
+It creates a user object with the information provided by the user in the registration form
+
+:param request: The request is an HttpRequest object
+:return: The render function is being returned.
+"""
 def registered(request):
     
     if request.method == "POST":

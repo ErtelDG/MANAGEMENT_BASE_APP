@@ -1,6 +1,8 @@
+# It imports the render function from the django.shortcuts module, the User model from the
+# django.contrib.auth.models module, the datetime module, the Task model from the kanban_board.models
+# module, and the timezone module from the django.utils module.
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.template import loader
 from datetime import datetime
 from kanban_board.models import Task
 from django.utils import timezone

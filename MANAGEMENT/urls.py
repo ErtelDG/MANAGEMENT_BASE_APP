@@ -17,21 +17,30 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
 
-# HIER APPS EINBINDEN, ERKLÄRUNG ARGUMENTE: https://docs.djangoproject.com/en/4.1/intro/tutorial01/ :
+
 urlpatterns = [
-    #HOME START Verzeichnis EINBINDEN:
+   
+    # A way to create a home page.
     path('', TemplateView.as_view(template_name='home/home.html'), name='home'),
     path('home/', TemplateView.as_view(template_name='home/home.html'), name='home'),
-    # ADMIN Verzeichnis EINBINDEN:
+    
+    # A way to create a home page.
     path('admin/', admin.site.urls, name="admin"),
-    # ACCOUNTS Verzeichnis EINBINDEN:
+    
+    # Including the urls.py file from the accounts app.
     path("accounts/", include("accounts.urls")),
-        # MANAGEMENT Verzeichnis APP EINBINDEN:
+       
+    
+    # A way to create a home page.
     path('management/', TemplateView.as_view(template_name='home/home.html'), name='home'),
-    # KANBAN_BOARD Verzeichnis EINBINDEN:
+    
+    
+    # Including the urls.py file from the kanban_board app.
     path('management/kanban_board/', include('apps.kanban_board.urls'), name='kanban_board_side'),
+    
     #Include django_browser_reload URL in your root url.py, which takes care of automatic page and css refreshes in the development mode.:
     path("__reload__/", include("django_browser_reload.urls")),
+    
     #If you're intending to use the browsable API you'll probably also want to add REST framework's login and logout views. Add the following to your root urls.py file.
     path('api-auth/', include('rest_framework.urls')),
 ]

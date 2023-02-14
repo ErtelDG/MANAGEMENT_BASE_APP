@@ -1,8 +1,10 @@
+# It imports the User model from Django's auth app.
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 import datetime
 
+# A list of tuples.
 PRIO_CHOICES=[
   ('Low','Low'),
   ('Medium','Medium'),
@@ -10,6 +12,7 @@ PRIO_CHOICES=[
 ]
 
 
+# A list of tuples.
 MEMBER_TYPE_CHOICES=[
   ('Frontend','Frontend'),
   ('Backend','Backend'),
@@ -20,6 +23,7 @@ MEMBER_TYPE_CHOICES=[
 ]
 
 
+# A list of tuples.
 STATUS_CHOICES=[
   ('ToDo','ToDo'),
   ('Working','Working'),
@@ -28,6 +32,7 @@ STATUS_CHOICES=[
 ]
 
 
+# It creates a model for the database.
 class Task(models.Model):
     title = models.CharField(max_length=200, default="No Title")
     description = models.CharField(max_length=400, default="No description")
