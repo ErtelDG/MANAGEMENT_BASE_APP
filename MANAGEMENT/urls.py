@@ -16,9 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+from rest_framework import routers
+
+from apps.kanban_board.views import TasksViewSet
+
+router = routers.DefaultRouter()
+router.register(r'gettasks', TasksViewSet)
 
 
 urlpatterns = [
+    path('api/', include(router.urls)),
    
     # A way to create a home page.
     path('', TemplateView.as_view(template_name='home/home.html'), name='home'),

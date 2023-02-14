@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 from datetime import datetime
 from kanban_board.models import Task
 from django.utils import timezone
+from rest_framework import viewsets
+from rest_framework import permissions
+from kanban_board.serializers import TasksSerializer
 
 
 """
@@ -139,3 +142,12 @@ def delete_task_successfully(request, task_id):
         deleteTask = Task.objects.get(id=task_id)
         deleteTask.delete()
     return render(request, 'kanban_board/delete_succsessfully.html')
+
+
+class TasksViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Task.objects.all().order_by('-status')
+    serializer_class = TasksSerializer
+    permission_classes = []#permissions.IsAuthenticated
