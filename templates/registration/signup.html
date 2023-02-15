@@ -6,31 +6,32 @@
          <input type="hidden" name="redirect" value="{{ redirect }}" />
 
          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" placeholder="Username" type="text" name="username" value="{{ inputUsername }}" required/>
+            <input class="mdl-textfield__input" placeholder="Username" type="text" name="username" minlength="5" maxlength="20" value="{{ inputUsername }}" required/>
             <label class="mdl-textfield__label"></label>
             {% if mistakeUsername %} <span class="text-red-500 text-xs">{{ mistakeUsername }}</span>{% endif %}
             {% if mistakeUsernameExists %} <span class="text-red-500 text-xs">{{ mistakeUsernameExists }}</span>{% endif %}
          </div>
 
          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" placeholder="First name" type="text" name="firstname" value="{{ inputFirstName }}" required />
+            <input class="mdl-textfield__input" placeholder="First name" type="text" name="firstname" minlength="2" maxlength="20" value="{{ inputFirstName }}" required />
             <label class="mdl-textfield__label"></label>
             {% if mistakeFirstName %}<span class="text-red-500 text-xs">{{ mistakeFirstName }}</span>{% endif %}
          </div>
 
          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" placeholder="Last name" type="text" value="{{ inputLastName }}" name="lastname" required />
+            <input class="mdl-textfield__input" placeholder="Last name" type="text" minlength="2" maxlength="20"  value="{{ inputLastName }}" name="lastname" required />
             <label class="mdl-textfield__label"></label>
             {% if mistakeLastName %}<span class="text-red-500 text-xs">{{ mistakeLastName }}</span>{% endif %}
          </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" name="useremail" placeholder="E-mail" type="text" value="{{ inputEmail }}" required />
+         
+         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="useremail" placeholder="E-mail" type="email" value="{{ inputEmail }}" required />
             <label class="mdl-textfield__label"></label>
             {% if mistakeEmail %}<span class="text-red-500 text-xs">{{ mistakeEmail }}</span>{% endif %}
          </div>
 
          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="password" placeholder="Password" name="userpassword" value="{{ inputPassword }}"  required />
+            <input class="mdl-textfield__input" type="password" placeholder="Password" name="userpassword" value="{{ inputPassword }}" minlength="8"  required />
             <label class="mdl-textfield__label">Password</label>
             {% if mistakePassword %}<span class="text-red-500 text-xs">{{ mistakePassword }}</span>{% endif %}
          </div>
