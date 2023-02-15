@@ -9,6 +9,9 @@ from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework import permissions
 from kanban_board.serializers import TasksSerializer
+from django.http import HttpResponse
+from django.core import serializers
+from rest_framework.decorators import api_view
 
 
 """
@@ -151,3 +154,19 @@ class TasksViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all().order_by('-status')
     serializer_class = TasksSerializer
     permission_classes = []#permissions.IsAuthenticated
+   
+    def create(self, request):
+        if request.method == 'POST':
+            requestValue=self.request.data       
+            task = Task.objects.create(
+                title = requestValue['newTaskTitle'] ,
+                description=requestValue['newTaskDescription'],
+                prio = requestValue['newTaskPrio'],
+                member_type=requestValue['newMemberType'],
+                assigned=User.objects.get(pk=requestValue["newTaskAssigned"]),
+                status=requestValue['newTaskStatus'],
+                created_at = timezone.now(),
+                updated_at = timezone.now(),
+            )
+            serialized_obj = serializers.serialize('json', [task, ]) 
+            return HttpResponse(serialized_obj, content_type='application/json')

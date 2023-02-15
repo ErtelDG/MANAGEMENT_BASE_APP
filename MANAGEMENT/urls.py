@@ -21,7 +21,7 @@ from rest_framework import routers
 from apps.kanban_board.views import TasksViewSet
 
 router = routers.DefaultRouter()
-router.register(r'gettasks', TasksViewSet)
+router.register(r'tasks', TasksViewSet)
 
 
 urlpatterns = [
