@@ -31,6 +31,11 @@ STATUS_CHOICES=[
   ('Done','Done'),
 ]
 
+class Subtask(models.Model):
+    title = models.CharField(max_length=50, default="No Title")
+    status_subtask = models.BooleanField("Status", default=False)
+
+
 
 # It creates a model for the database.
 class Task(models.Model):
@@ -42,6 +47,7 @@ class Task(models.Model):
     status=models.CharField(max_length=20, choices=STATUS_CHOICES, default='ToDo')
     created_at = models.DateTimeField('date created')
     updated_at = models.DateTimeField('date updated')
+    sub_task = models.CharField(max_length=10, default="No subtask")
     
     #It’s important to add __str__() methods to your models, not only for your own convenience when dealing with the interactive prompt, but also because objects’ representations are used throughout Django’s automatically-generated admin.
     #def __str__(self):

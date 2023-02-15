@@ -6,33 +6,33 @@
          <input type="hidden" name="redirect" value="{{ redirect }}" />
 
          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" placeholder="Username" type="text" name="username" minlength="5" maxlength="20" required />
-            <label class="mdl-textfield__label">Username</label>
-            <span class="mdl-textfield__error">Required. 5-20 characters or fewer. Letters only.</span>
+            <input class="mdl-textfield__input" placeholder="Username" type="text" name="username" value="{{ inputUsername }}" required/>
+            <label class="mdl-textfield__label"></label>
+            {% if mistakeUsername %} <span class="text-red-500 text-xs">{{ mistakeUsername }}</span>{% endif %}
+            {% if mistakeUsernameExists %} <span class="text-red-500 text-xs">{{ mistakeUsernameExists }}</span>{% endif %}
          </div>
 
          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" placeholder="First name" type="text" name="firstname" minlength="2" maxlength="20" required />
-            <label class="mdl-textfield__label">First Name</label>
-            <span class="mdl-textfield__error">Required. 2-20 characters or fewer. Letters only.</span>
+            <input class="mdl-textfield__input" placeholder="First name" type="text" name="firstname" value="{{ inputFirstName }}" required />
+            <label class="mdl-textfield__label"></label>
+            {% if mistakeFirstName %}<span class="text-red-500 text-xs">{{ mistakeFirstName }}</span>{% endif %}
          </div>
 
          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" placeholder="Last name" type="text" name="lastname" minlength="2" maxlength="20" required />
-            <label class="mdl-textfield__label">Last Name</label>
-            <span class="mdl-textfield__error">Required. 2-20 characters or fewer. Letters only.</span>
+            <input class="mdl-textfield__input" placeholder="Last name" type="text" value="{{ inputLastName }}" name="lastname" required />
+            <label class="mdl-textfield__label"></label>
+            {% if mistakeLastName %}<span class="text-red-500 text-xs">{{ mistakeLastName }}</span>{% endif %}
+         </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" name="useremail" placeholder="E-mail" type="text" value="{{ inputEmail }}" required />
+            <label class="mdl-textfield__label"></label>
+            {% if mistakeEmail %}<span class="text-red-500 text-xs">{{ mistakeEmail }}</span>{% endif %}
          </div>
 
          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" placeholder="E-mail" type="email" name="useremail" required />
-            <label class="mdl-textfield__label">E-mail</label>
-            <span class="mdl-textfield__error">Enter a valid email!</span>
-         </div>
-
-         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="password" placeholder="Password" name="userpassword" minlength="8" required />
+            <input class="mdl-textfield__input" type="password" placeholder="Password" name="userpassword" value="{{ inputPassword }}"  required />
             <label class="mdl-textfield__label">Password</label>
-            <span class="mdl-textfield__error">Your password must contain at least 8 characters.</span>
+            {% if mistakePassword %}<span class="text-red-500 text-xs">{{ mistakePassword }}</span>{% endif %}
          </div>
          <div class="mdl-card__actions flex center">
             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Log In</button>
