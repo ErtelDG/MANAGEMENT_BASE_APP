@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
 from rest_framework import routers
-
+from django.conf.urls.static import static
 from apps.kanban_board.views import TasksViewSet
-
+from MANAGEMENT import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 router = routers.DefaultRouter()
 router.register(r'tasks', TasksViewSet)
 
@@ -50,4 +51,6 @@ urlpatterns = [
     
     #If you're intending to use the browsable API you'll probably also want to add REST framework's login and logout views. Add the following to your root urls.py file.
     path('api-auth/', include('rest_framework.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()

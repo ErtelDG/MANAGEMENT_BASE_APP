@@ -48,6 +48,8 @@ class Task(models.Model):
     created_at = models.DateTimeField('date created')
     updated_at = models.DateTimeField('date updated')
     sub_task = models.CharField(max_length=10, default="No subtask")
+    newCol  = models.CharField(max_length=200, default="No Title")
+    newCol2  = models.CharField(max_length=200, default="No Title")
     
     #It’s important to add __str__() methods to your models, not only for your own convenience when dealing with the interactive prompt, but also because objects’ representations are used throughout Django’s automatically-generated admin.
     #def __str__(self):
