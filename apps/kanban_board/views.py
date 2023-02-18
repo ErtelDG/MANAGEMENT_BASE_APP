@@ -29,7 +29,8 @@ def index_kanban_board(request):
         waiting = Task.objects.filter(status="Waiting")
         done = Task.objects.filter(status="Done")
         userList = User.objects.all()
-        return render(request, 'kanban_board/kanban_board_template.html', {'users': userList, 'toDos':toDo, 'workings':working, 'waitings':waiting, 'dones':done})
+        subTasks = Subtask.objects.all()
+        return render(request, 'kanban_board/kanban_board_template.html', {'users': userList, 'toDos':toDo, 'workings':working, 'waitings':waiting, 'dones':done, 'subtasks':subTasks})
     return render(request, 'kanban_board/kanban_board_template.html',{'WERT1':'NO VALUE REQUEST'})
 
 
@@ -95,8 +96,8 @@ def edit_task(request, task_id):
     id = task_id
     selectedTask = Task.objects.get(pk=id)    
     user = User.objects.get(pk=selectedTask.assigned_id)
-    subtask = Subtask.objects.filter(task_id=id)
-    return render(request, 'kanban_board/edit_task.html', {'editTask':selectedTask, 'users': userList, 'currentUser': user, 'subtasks':subtask})
+    subTasks = Subtask.objects.filter(task_id=id)
+    return render(request, 'kanban_board/edit_task.html', {'editTask':selectedTask, 'users': userList, 'currentUser': user, 'subtasks':subTasks})
 
 
 
