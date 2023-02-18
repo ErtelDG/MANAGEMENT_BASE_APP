@@ -30,6 +30,20 @@
             >
 {{ editTask.description }}</textarea
             >
+{% for subtask in subtasks %}          
+            <textarea
+               class="w-full my-2"
+               name="editSubtaskDescription"
+               id="editSubtaskDescription"
+               placeholder="Subtask description..."
+               minlength="10"
+               maxlength="255"
+               cols="10"
+               rows="1"
+            >
+{{ subtask.title }}</textarea
+            >{{ subtask.title }}
+{% endfor %}  
 
             <div class="flex justify-evenly items-center my-2">
                <label class="w-2/6" for="prio">Prio:</label>

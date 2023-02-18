@@ -4,7 +4,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from datetime import datetime
-from kanban_board.models import Task
+from kanban_board.models import Task, Subtask
 from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework import permissions
@@ -85,7 +85,8 @@ def edit_task(request, task_id):
     id = task_id
     selectedTask = Task.objects.get(pk=id)    
     user = User.objects.get(pk=selectedTask.assigned_id)
-    return render(request, 'kanban_board/edit_task.html', {'editTask':selectedTask, 'users': userList, 'currentUser': user})
+    subtask = Subtask.objects.filter(task_id=id)
+    return render(request, 'kanban_board/edit_task.html', {'editTask':selectedTask, 'users': userList, 'currentUser': user, 'subtasks':subtask})
 
 
 

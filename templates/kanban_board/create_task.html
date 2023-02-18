@@ -2,68 +2,113 @@
 <link rel="stylesheet" href="{% static 'css/kanban_board_css/create_task.css' %}" />
 
 <div class="mdl-card__title mdl-card--expand border-b-4 mb-4">
-   <div class="mdl-card--border text-center w-full text-xl font-semibold"><a href="{% url 'index_kanban_board' %}" class="mdl-card--border text-2xl font-semibold text-black hover:text-gray-500"> KANBAN Board</a></div>
+   <div class="mdl-card--border text-center w-full text-xl font-semibold"><a href="{% url 'index_kanban_board' %}"
+         class="mdl-card--border text-2xl font-semibold text-black hover:text-gray-500"> KANBAN Board</a></div>
 </div>
 
 <div class="flex justify-center">
 
-     <div class="topnav">
-         <a class="active">Add new Task</a>
-         <div id="add_Task" class="w-full flex-col items-center pt-2" style="display: flex">
-               <form action="add-task-successfully/" method="post" class="w-full px-4">
-               {% csrf_token %} {{ form.as_p }}
-               <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" placeholder="Title..."
-                  minlength="5" maxlength="50" required />
+   <div class="topnav">
+      <a class="active">Add new Task</a>
+      <div id="add_Task" class="w-full flex-col items-center pt-2" style="display: flex">
+         <form action="add-task-successfully/" method="post" class="w-full px-4">
+            {% csrf_token %} {{ form.as_p }}
+            <input class="w-full my-2" type="text" name="newTaskTitle" id="newTaskTitle" placeholder="Title..."
+               minlength="5" maxlength="50" required />
 
-               <textarea class="w-full my-2" name="newTaskDescription" id="newTaskDescription"
-                  placeholder="Description..." minlength="10" maxlength="255" required cols="30" rows="3 "></textarea>
-
-               <div class="flex justify-evenly items-center my-2">
-                  <label class="w-2/6" for="prio">Prio:</label>
-                  <select class="w-4/6" name="newTaskPrio" id="newTaskPrio">
-                     <option value="LOW">Low</option>
-                     <option value="MEDIUM">Medium</option>
-                     <option value="URGENT">Urgent</option>
-                  </select>
+            <textarea class="w-full my-2" name="newTaskDescription" id="newTaskDescription"
+               placeholder="Task description..." minlength="10" maxlength="255" required cols="30" rows="3 "></textarea>
+            <div class="w-full" id="renderSubtask"></div>
+            <div class="flex border border-black">
+               <input class="w-full h-10 px-4" name="newSubtaskkDescription" id="newSubtaskDescription"
+                  placeholder="Subtask description..." minlength="10" maxlength="255"></input>
+               <div class="w-10 flex justify-center items-center bg-blue-800 hover:bg-opacity-50 hover:cursor-pointer"
+                  onclick="addSubtask()" id="addSubtask">
+                  <i class="material-icons">add</i>
+                  <div class="mdl-tooltip" data-mdl-for="addSubtask">
+                     Add <strong>subtask</strong>
+                  </div>
                </div>
-
-               <div class="flex justify-evenly items-center my-2">
-                  <label class="w-2/6" for="memberType">Area:</label>
-                  <select class="w-4/6" name="newMemberType" id="newMemberType" required>
-                     <option value="Frontend">Frontend</option>
-                     <option value="Backend">Backend</option>
-                     <option value="Ui Ux Design">UI/UX Design</option>
-                     <option value="Product Owner">Product Owner</option>
-                     <option value="Srum Master">Srum Master</option>
-                     <option value="Testing">Testing</option>
-                  </select>
-               </div>
-
-               <div class="flex justify-evenly items-center my-2">
-                  <label class="w-2/6" for="prio">Assigned:</label>
-                  <select class="w-4/6" name="newTaskAssigned" id="newTaskAssigned">
-                     {% for user in users %}
-                     <option value={{ user.id }}>{{ user.username }}</option>
-                     {% endfor %}
-                  </select>
-               </div>
-
-               <div class="flex justify-evenly items-center my-2">
-                  <label class="w-2/6" for="status">Status:</label>
-                  <select class="w-4/6" name="newTaskStatus" id="newTaskStatus" required>
-                     <option value="ToDo">ToDo</option>
-                     <option value="Working">Working</option>
-                     <option value="Waiting">Waiting</option>
-                     <option value="Done">Done</option>
-                  </select>
-               </div>
-
-               <div class="flex justify-evenly w-full my-2">
-                  <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 hover:bg-opacity-50" type="submit">Add
-                     task</button>
-               </div>
-            </form>
-         </div>
+            </div>
       </div>
+      <div class="flex justify-evenly items-center my-2">
+         <label class="w-2/6" for="prio">Prio:</label>
+         <select class="w-4/6" name="newTaskPrio" id="newTaskPrio">
+            <option value="LOW">Low</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="URGENT">Urgent</option>
+         </select>
+      </div>
+
+      <div class="flex justify-evenly items-center my-2">
+         <label class="w-2/6" for="memberType">Area:</label>
+         <select class="w-4/6" name="newMemberType" id="newMemberType" required>
+            <option value="Frontend">Frontend</option>
+            <option value="Backend">Backend</option>
+            <option value="Ui Ux Design">UI/UX Design</option>
+            <option value="Product Owner">Product Owner</option>
+            <option value="Srum Master">Srum Master</option>
+            <option value="Testing">Testing</option>
+         </select>
+      </div>
+
+      <div class="flex justify-evenly items-center my-2">
+         <label class="w-2/6" for="prio">Assigned:</label>
+         <select class="w-4/6" name="newTaskAssigned" id="newTaskAssigned">
+            {% for user in users %}
+            <option value={{ user.id }}>{{ user.username }}</option>
+            {% endfor %}
+         </select>
+      </div>
+
+      <div class="flex justify-evenly items-center my-2">
+         <label class="w-2/6" for="status">Status:</label>
+         <select class="w-4/6" name="newTaskStatus" id="newTaskStatus" required>
+            <option value="ToDo">ToDo</option>
+            <option value="Working">Working</option>
+            <option value="Waiting">Waiting</option>
+            <option value="Done">Done</option>
+         </select>
+      </div>
+
+      <div class="flex justify-evenly w-full my-2">
+         <button class="w-48 text-white px-4 py-2 my-2 bg-blue-800 hover:bg-opacity-50" type="submit">Add
+            task</button>
+      </div>
+      </form>
+   </div>
 </div>
+</div>
+<script>
+   let counter = 0
+
+   function addSubtask() {
+
+      let newSubtaskInput = document.getElementById("newSubtaskDescription")
+      let newSubtaskValue = newSubtaskInput.value
+      if (newSubtaskValue != "") {
+         document.getElementById("renderSubtask").innerHTML += `
+         <div class="flex border border-black my-2" id="subtask${counter}">
+            <div class="w-full h-10 px-4 flex items-center" name="subtask${counter}">${newSubtaskValue}</div>
+            <div class="w-10 flex justify-center items-center bg-red-600 hover:bg-opacity-50 hover:cursor-pointer"
+                  onclick="removeSubtask('subtask${counter}')">
+                  <i class="material-icons" id="removeSubtask">remove</i>
+               </div>
+                     <div class="mdl-tooltip" data-mdl-for="removeSubtask">
+                           Remove <strong>subtask</strong>
+                        </div>
+         </div>`;
+      }
+      newSubtaskInput.value = ''
+      counter++
+   }
+
+
+
+   function removeSubtask(i) {
+      let removeSubtaskInput = document.getElementById(i)
+      removeSubtaskInput.remove()
+   }
+
+</script>
 {% endblock %}
