@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'kanban_board',
+    'tailwind',
     'tailwind_css',
     'django_browser_reload',
     'accounts',
