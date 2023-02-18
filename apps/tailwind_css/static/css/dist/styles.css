@@ -831,6 +831,10 @@ select {
   width: 2.5rem;
 }
 
+.w-96 {
+  width: 24rem;
+}
+
 .flex-col {
   flex-direction: column;
 }

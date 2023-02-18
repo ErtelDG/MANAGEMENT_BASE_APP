@@ -57,7 +57,7 @@ request that was sent to the server
 """
 def new_task_successfully(request):
     if request.method == 'POST':
-        Task.objects.create(
+        newTask = Task.objects.create(
             title = request.POST["newTaskTitle"],
             description=request.POST["newTaskDescription"],
             prio = request.POST["newTaskPrio"],
@@ -67,6 +67,16 @@ def new_task_successfully(request):
             created_at = timezone.now(),
             updated_at = timezone.now(),
         )
+        
+        subtask_list = request.POST.getlist("newSubtaskValue") 
+        for subtask in subtask_list:
+            Subtask.objects.create(
+                title = subtask,
+                status_subtask=False,
+                task_id=newTask.pk
+            )
+        
+        
     return render(request, 'kanban_board/create_succsessfully.html')
 
 
