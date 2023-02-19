@@ -82,10 +82,8 @@ footer {
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
-  -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
-
 
 /*! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com*/
 *,
@@ -203,7 +201,6 @@ select {
 [type=reset],
 [type=submit],
 button {
-  -webkit-appearance: button;
   background-color: initial;
   background-image: none
 }
@@ -226,7 +223,6 @@ progress {
 }
 
 [type=search] {
-  -webkit-appearance: textfield;
   outline-offset: -2px
 }
 
@@ -310,7 +306,6 @@ object,
 svg,
 video {
   display: block;
-  vertical-align: middle
 }
 
 img,
@@ -624,8 +619,8 @@ select {
   position: static
 }
 
-.-m-1 {
-  margin: -.25rem
+.m-1 {
+  margin: .25rem
 }
 
 .mx-auto {
@@ -652,6 +647,10 @@ select {
 
 .mb-0 {
   margin-bottom: 0
+}
+
+.ml-6 {
+  margin-left: 1.5rem
 }
 
 .mt-4 {
@@ -826,9 +825,9 @@ select {
   background-color: rgb(239 68 68/var(--tw-bg-opacity))
 }
 
-.bg-green-600 {
+.bg-white {
   --tw-bg-opacity: 1;
-  background-color: rgb(22 163 74/var(--tw-bg-opacity))
+  background-color: rgb(255 255 255/var(--tw-bg-opacity))
 }
 
 .bg-blue-100 {
@@ -856,6 +855,10 @@ select {
 .pt-2,
 .py-2 {
   padding-top: .5rem
+}
+
+.pl-4 {
+  padding-left: 1rem
 }
 
 .text-left {
@@ -924,6 +927,10 @@ select {
 .text-red-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68/var(--tw-text-opacity))
+}
+
+.line-through {
+  text-decoration-line: line-through
 }
 
 .hover\:cursor-pointer:hover {
