@@ -25,7 +25,7 @@
             {% for subtask in subtasks %}
 
             <input class="hidden" name="subtask_id" value="{{subtask.pk}}">
-            <div class="flex justify-between my-2 bg-white">
+            <div class="flex justify-between my-2 bg-white pl-4">
                <input class="flex items-center border-solid text-lg w-[calc(100%-2rem)]" name="{{subtask.pk}}_Title" value="{{ subtask.title }}">
                <div class="hidden">{{subtask.pk}}</div>
                

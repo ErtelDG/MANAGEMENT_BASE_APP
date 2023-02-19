@@ -41,24 +41,21 @@
                   <div class="flex w-full items-center my-2 border-solid disable-input-user">
                      <label class="w-full text-center text-lg" id="todoDescriptionHidden_{{ todo.id }}" for="todoDescription">{{ todo.description }}</label>
                   </div>
-                  
-                  {% for subtask in subtasks %} 
-
-                     {% if subtask.task_id == todo.pk %}
-                     <div class="flex justify-between disable-input-user my-2">
-                        {% if subtask.status_subtask == 0 %}
-                      <div class="flex w-full items-center border-solid text-lg mr-8">Subtask: 
-                  {{ subtask.title }}</div>
-                                   
-                     {% else %}
-         <div class="flex w-full items-center border-solid text-lg mr-8 line-through">Subtask:
-            {{ subtask.title }}</div>
-                     {% endif %}
-                  </div>
-                        
-                     {% endif %} 
-
-                  {% endfor %}
+                  {% if subtasks %}
+                     {% for subtask in subtasks %} 
+                        {% if subtask.task_id == todo.pk %}
+                           <div class="flex justify-between disable-input-user my-2">
+                              {% if subtask.status_subtask == 0 %}
+                                 <div class="flex w-full items-center border-solid text-lg ml-6">Subtask: {{ subtask.title }}</div>
+                              {% else %}
+                                 <div class="flex w-full items-center border-solid text-lg ml-6 line-through">Subtask: {{ subtask.title }}</div>
+                              {% endif %}
+                           </div>
+                        {% endif %} 
+                                               
+                     {% endfor %}
+                       
+                  {% endif %}
                   <div class="flex w-full items-center my-2 border-solid disable-input-user">
                      <div class="w-1/12"></div>
                      <label class="w-5/12 text-left" for="prio">Prio:</label>
@@ -119,9 +116,24 @@
 
                   <div class="flex w-full items-center my-2 border-solid disable-input-user">
                      <label class="w-full text-center text-lg" id="workingDescriptionHidden_{{ working.id }}" for="workingDescription"
-                        >{{ working.description }}</label
-                     >
+                        >{{ working.description }}</label>
                   </div>
+
+                  {% if subtasks %}
+                     {% for subtask in subtasks %} 
+                        {% if subtask.task_id == working.pk %}
+                           <div class="flex justify-between disable-input-user my-2">
+                              {% if subtask.status_subtask == 0 %}
+                                 <div class="flex w-full items-center border-solid text-lg ml-6">Subtask: {{ subtask.title }}</div>
+                              {% else %}
+                                 <div class="flex w-full items-center border-solid text-lg ml-6 line-through">Subtask: {{ subtask.title }}</div>
+                              {% endif %}
+                           </div>
+                        {% endif %} 
+                                               
+                     {% endfor %}
+                       
+                  {% endif %}
 
                   <div class="flex w-full items-center my-2 border-solid disable-input-user">
                      <div class="w-1/12"></div>
@@ -187,6 +199,22 @@
                      >
                   </div>
 
+                   {% if subtasks %}
+                     {% for subtask in subtasks %} 
+                        {% if subtask.task_id == waiting.pk %}
+                           <div class="flex justify-between disable-input-user my-2">
+                              {% if subtask.status_subtask == 0 %}
+                                 <div class="flex w-full items-center border-solid text-lg ml-6">Subtask: {{ subtask.title }}</div>
+                              {% else %}
+                                 <div class="flex w-full items-center border-solid text-lg ml-6 line-through">Subtask: {{ subtask.title }}</div>
+                              {% endif %}
+                           </div>
+                        {% endif %} 
+                                               
+                     {% endfor %}
+                       
+                  {% endif %}
+
                   <div class="flex w-full items-center my-2 border-solid disable-input-user">
                      <div class="w-1/12"></div>
                      <label class="w-5/12 text-left" for="prio">Prio:</label>
@@ -244,6 +272,22 @@
                   <div class="flex w-full items-center my-2 border-solid disable-input-user">
                      <label class="w-full text-center text-lg" id="doneDescriptionHidden_{{ done.id }}" for="doneDescription">{{ done.description }}</label>
                   </div>
+
+ {% if subtasks %}
+                     {% for subtask in subtasks %} 
+                        {% if subtask.task_id == done.pk %}
+                           <div class="flex justify-between disable-input-user my-2">
+                              {% if subtask.status_subtask == 0 %}
+                                 <div class="flex w-full items-center border-solid text-lg ml-6">Subtask: {{ subtask.title }}</div>
+                              {% else %}
+                                 <div class="flex w-full items-center border-solid text-lg ml-6 line-through">Subtask: {{ subtask.title }}</div>
+                              {% endif %}
+                           </div>
+                        {% endif %} 
+                                               
+                     {% endfor %}
+                       
+                  {% endif %}
 
                   <div class="flex w-full items-center my-2 border-solid disable-input-user">
                      <div class="w-1/12"></div>

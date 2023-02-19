@@ -21,7 +21,7 @@
             <div class="w-full" id="renderSubtask"></div>
             <div class="flex border border-black">
                <input class="w-full h-10 px-4" name="newSubtaskkDescription" id="newSubtaskDescription"
-                  placeholder="Subtask description..." minlength="10" maxlength="255"></input>
+                  placeholder="Subtask description..." minlength="0" maxlength="255" required></input>
                <div class="w-10 flex justify-center items-center bg-blue-800 hover:bg-opacity-50 hover:cursor-pointer"
                   onclick="addSubtask()" id="addSubtask">
                   <i class="material-icons">add</i>
@@ -100,6 +100,7 @@
                         </div>
          </div>`;
       }
+      newSubtaskInput.required = false;
       newSubtaskInput.value = ''
       counter++
    }
