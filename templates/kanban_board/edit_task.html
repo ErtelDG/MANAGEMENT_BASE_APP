@@ -25,18 +25,13 @@
             {% for subtask in subtasks %}
 
 
-            <div class="flex justify-between my-2">
+            <div class="flex justify-between my-2 bg-white">
                <input class="flex items-center border-solid text-lg w-[calc(100%-2rem)]" value="{{ subtask.title }}">
                </input>
-               {% if subtask.status_subtask == 0 %}
-               <div
-                  class="w-8 h-8 flex justify-center items-center rounded-r bg-red-600 hover:bg-opacity-50 hover:cursor-pointer">
-                  <i class="material-icons">radio_button_unchecked</i>
-               </div>
-               {% else %}  
-               <div
-                  class="w-10 -m-1 flex justify-center items-center rounded-r bg-green-600 hover:bg-opacity-50 hover:cursor-pointer">
-                  <i class="material-icons">task_alt</i>
+               {% if subtask %}
+               <div class="w-8 h-8 flex justify-center items-center rounded-r hover:cursor-pointer {{ subtask.status_subtask }}_class" id="{{ subtask.title }}_color">
+                  
+                <input class="m-1 no-outline check-input" type="checkbox" checked="checked">                   
                </div>
                {% endif %}
             </div>
@@ -101,4 +96,5 @@
       </div>
    </div>
 </div>
+
 {% endblock %}
