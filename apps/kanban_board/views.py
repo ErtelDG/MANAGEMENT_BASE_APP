@@ -112,6 +112,21 @@ request that was sent to the server
 """
 def edit_task_successfully(request, task_id):
     if request.method == 'POST':
+        ids = request.POST.getlist('subtask_id')
+        for id in ids:
+            editSubtask = Subtask.objects.get(id=id)
+            editSubtask.title = request.POST.get(f'{id}'+'_Title')
+            idCheckbox = request.POST.get(f'{id}'+'_checkbox')
+            inputCheckbox = (f'{id}'+'_checkbox')
+            if inputCheckbox in request.POST:
+                editSubtask.status_subtask = True
+                print('TRUE TRUE' + inputCheckbox)
+            else:
+                editSubtask.status_subtask = False
+                print('FALSE FALSE'  + inputCheckbox)
+            editSubtask.save()
+            
+    
         editTask = Task.objects.get(id=task_id)
         editTask.title =request.POST.get('editTitle')
         editTask.description = request.POST.get('editDescription')

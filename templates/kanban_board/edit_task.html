@@ -24,15 +24,23 @@
 {{ editTask.description }}</textarea>
             {% for subtask in subtasks %}
 
-
+            <input class="hidden" name="subtask_id" value="{{subtask.pk}}">
             <div class="flex justify-between my-2 bg-white">
-               <input class="flex items-center border-solid text-lg w-[calc(100%-2rem)]" value="{{ subtask.title }}">
-               </input>
+               <input class="flex items-center border-solid text-lg w-[calc(100%-2rem)]" name="{{subtask.pk}}_Title" value="{{ subtask.title }}">
+               <div class="hidden">{{subtask.pk}}</div>
+               
                {% if subtask %}
-               <div class="w-8 h-8 flex justify-center items-center rounded-r hover:cursor-pointer {{ subtask.status_subtask }}_class" id="{{ subtask.title }}_color">
-                  
-                <input class="m-1 no-outline check-input" type="checkbox" checked="checked">                   
+               
+               <div class="w-8 h-8 flex justify-center items-center rounded-r hover:cursor-pointer" id="{{ subtask.title }}_color">
+                 {% if subtask.status_subtask == 0 %}
+                <input name="{{subtask.pk}}_checkbox" class="m-1 no-outline check-input" type="checkbox" >
+                
                </div>
+               {% else %}
+               <input name="{{subtask.pk}}_checkbox" class="m-1 no-outline check-input" type="checkbox" checked="checked">      
+               <div class="hidden">{{subtask.pk}}</div>
+               </div>
+               {% endif %} 
                {% endif %}
             </div>
 
